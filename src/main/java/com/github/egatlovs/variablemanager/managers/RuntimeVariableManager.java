@@ -10,7 +10,7 @@ public interface RuntimeVariableManager {
 
 	<T> T getVariableLocal(Class<T> clazz, String executionid);
 
-	void removeVariables(Object value, String executionid);
+	<T> void removeVariables(Class<T> clazz, String executionid);
 
-	void removeVariablesLocal(Object value, String executionid);
+	<T> void removeVariablesLocal(Class<T> clazz, String executionid);
 }
