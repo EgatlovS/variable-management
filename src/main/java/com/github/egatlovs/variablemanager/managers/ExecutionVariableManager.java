@@ -10,8 +10,8 @@ public interface ExecutionVariableManager {
 
 	<T> T getVariableLocal(Class<T> clazz);
 
-	void removeVariables(Object value);
+	<T> void removeVariables(Class<T> clazz);
 
-	void removeVariablesLocal(Object value);
+	<T> void removeVariablesLocal(Class<T> clazz);
 
 }
