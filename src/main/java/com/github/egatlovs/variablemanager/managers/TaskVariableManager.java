@@ -10,8 +10,8 @@ public interface TaskVariableManager {
 
 	<T> T getVariableLocal(Class<T> clazz, String taskid);
 
-	void removeVariables(Object value, String taskid);
+	<T> void removeVariables(Class<T> clazz, String taskid);
 
-	void removeVariablesLocal(Object value, String taskid);
+	<T> void removeVariablesLocal(Class<T> clazz, String taskid);
 
 }
