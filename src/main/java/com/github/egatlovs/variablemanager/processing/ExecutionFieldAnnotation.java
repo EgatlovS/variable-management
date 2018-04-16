@@ -17,10 +17,15 @@ public class ExecutionFieldAnnotation {
 	}
 
 	public String getName() {
+		String name;
 		if (executionField == null) {
-			return annotated.getClass().getName();
+			name = annotated.getClass().getName();
+		} else if (executionField.prefix() == null || executionField.prefix().isEmpty()) {
+			name = executionField.name();
+		} else {
+			name = executionField.prefix() + "_" + executionField.name();
 		}
-		return executionField.prefix() + "_" + executionField.name();
+		return name;
 	}
 
 }
