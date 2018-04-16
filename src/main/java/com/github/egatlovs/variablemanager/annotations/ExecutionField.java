@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Target({ TYPE, FIELD })
 public @interface ExecutionField {
 
-	String name() default "";
+	String name();
 
 	String prefix() default "";
 
