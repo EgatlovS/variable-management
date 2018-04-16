@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import org.camunda.bpm.engine.RuntimeService;
 
 import com.github.egatlovs.variablemanager.processing.FieldNames;
+import com.github.egatlovs.variablemanager.processing.ResultObject;
 import com.github.egatlovs.variablemanager.processing.VariableProcessor;
 
 @RequestScoped
@@ -59,16 +60,14 @@ public class RuntimeManager implements RuntimeVariableManager {
 		for (String name : variableNames) {
 			variables.put(name, this.runtimeService.getVariable(executionid, name));
 		}
-		T obj = null;
 		try {
-			obj = clazz.getConstructor().newInstance();
-			// TODO set variables to obj
-		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
-				| IllegalArgumentException | InvocationTargetException e) {
+			return new ResultObject().getValue(clazz, variables);
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
 			// TODO exception handling
 			e.printStackTrace();
+			throw new RuntimeException();
 		}
-		return obj;
 	}
 
 	@Override
@@ -78,16 +77,14 @@ public class RuntimeManager implements RuntimeVariableManager {
 		for (String name : variableNames) {
 			variables.put(name, this.runtimeService.getVariableLocal(executionid, name));
 		}
-		T obj = null;
 		try {
-			obj = clazz.getConstructor().newInstance();
-			// TODO set variables to obj
-		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
-				| IllegalArgumentException | InvocationTargetException e) {
+			return new ResultObject().getValue(clazz, variables);
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
 			// TODO exception handling
 			e.printStackTrace();
+			throw new RuntimeException();
 		}
-		return obj;
 	}
 
 	@Override
