@@ -13,6 +13,7 @@ import org.camunda.bpm.engine.TaskService;
 import com.github.egatlovs.variablemanager.processing.FieldNames;
 import com.github.egatlovs.variablemanager.processing.ResultObject;
 import com.github.egatlovs.variablemanager.processing.VariableProcessor;
+import com.github.egatlovs.variablemanager.validation.VariableValidator;
 
 @RequestScoped
 public class TaskManager implements TaskVariableManager {
@@ -29,7 +30,7 @@ public class TaskManager implements TaskVariableManager {
 
 	@Override
 	public void setVariable(Object value, String taskid) {
-		// TODO Bean Validation first
+		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
 		try {
 			Map<String, Object> processedVariables = processor.process(value);
@@ -42,7 +43,7 @@ public class TaskManager implements TaskVariableManager {
 
 	@Override
 	public void setVariableLocal(Object value, String taskid) {
-		// TODO Bean Validation first
+		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
 		try {
 			Map<String, Object> processedVariables = processor.process(value);

@@ -13,6 +13,7 @@ import org.camunda.bpm.engine.RuntimeService;
 import com.github.egatlovs.variablemanager.processing.FieldNames;
 import com.github.egatlovs.variablemanager.processing.ResultObject;
 import com.github.egatlovs.variablemanager.processing.VariableProcessor;
+import com.github.egatlovs.variablemanager.validation.VariableValidator;
 
 @RequestScoped
 public class RuntimeManager implements RuntimeVariableManager {
@@ -29,7 +30,7 @@ public class RuntimeManager implements RuntimeVariableManager {
 
 	@Override
 	public void setVariable(Object value, String executionid) {
-		// TODO Bean Validation first
+		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
 		try {
 			Map<String, Object> processedVariables = processor.process(value);
@@ -42,7 +43,7 @@ public class RuntimeManager implements RuntimeVariableManager {
 
 	@Override
 	public void setVariableLocal(Object value, String executionid) {
-		// TODO Bean Validation first
+		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
 		try {
 			Map<String, Object> processedVariables = processor.process(value);
