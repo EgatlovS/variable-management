@@ -18,12 +18,9 @@ import com.github.egatlovs.variablemanager.validation.VariableValidator;
 @RequestScoped
 public class RuntimeManager implements RuntimeVariableManager {
 
-	@Inject
 	private RuntimeService runtimeService;
 
-	public RuntimeManager() {
-	}
-
+	@Inject
 	public RuntimeManager(RuntimeService runtimeService) {
 		this.setExecutionService(runtimeService);
 	}

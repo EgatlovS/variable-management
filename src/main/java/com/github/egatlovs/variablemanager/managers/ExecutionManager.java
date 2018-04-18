@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 
-import org.camunda.bpm.engine.context.DelegateExecutionContext;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
 import com.github.egatlovs.variablemanager.processing.FieldNames;
@@ -20,10 +20,7 @@ public class ExecutionManager implements ExecutionVariableManager {
 
 	private DelegateExecution execution;
 
-	public ExecutionManager() {
-		this(DelegateExecutionContext.getCurrentDelegationExecution());
-	}
-
+	@Inject
 	public ExecutionManager(DelegateExecution execution) {
 		this.execution = execution;
 	}

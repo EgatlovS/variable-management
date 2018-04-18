@@ -18,12 +18,9 @@ import com.github.egatlovs.variablemanager.validation.VariableValidator;
 @RequestScoped
 public class TaskManager implements TaskVariableManager {
 
-	@Inject
 	private TaskService taskService;
 
-	public TaskManager() {
-	}
-
+	@Inject
 	public TaskManager(TaskService taskService) {
 		this.taskService = taskService;
 	}
