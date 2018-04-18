@@ -38,4 +38,9 @@ public class FieldNames {
 		return names;
 	}
 
+	@Override
+	public String toString() {
+		return "FieldNames";
+	}
+
 }

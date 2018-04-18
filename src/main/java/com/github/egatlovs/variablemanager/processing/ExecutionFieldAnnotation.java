@@ -28,4 +28,9 @@ public class ExecutionFieldAnnotation {
 		return name;
 	}
 
+	@Override
+	public String toString() {
+		return "ExecutionFieldAnnotation [executionField=" + executionField + ", annotated=" + annotated + "]";
+	}
+
 }

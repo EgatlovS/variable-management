@@ -28,4 +28,9 @@ public class ResultObject {
 		return obj;
 	}
 
+	@Override
+	public String toString() {
+		return "ResultObject";
+	}
+
 }

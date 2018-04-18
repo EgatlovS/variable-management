@@ -29,4 +29,9 @@ public class ExecutionAnnotation {
 		return execution.storeFields();
 	}
 
+	@Override
+	public String toString() {
+		return "ExecutionAnnotation [execution=" + execution + "]";
+	}
+
 }

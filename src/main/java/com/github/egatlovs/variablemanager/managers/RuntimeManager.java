@@ -105,4 +105,34 @@ public class RuntimeManager implements RuntimeVariableManager {
 		this.runtimeService = runtimeService;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((runtimeService == null) ? 0 : runtimeService.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RuntimeManager other = (RuntimeManager) obj;
+		if (runtimeService == null) {
+			if (other.runtimeService != null)
+				return false;
+		} else if (!runtimeService.equals(other.runtimeService))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "RuntimeManager [runtimeService=" + runtimeService + "]";
+	}
+
 }

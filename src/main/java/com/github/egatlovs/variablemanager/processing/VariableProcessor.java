@@ -57,4 +57,9 @@ public class VariableProcessor {
 		return processedVariables;
 	}
 
+	@Override
+	public String toString() {
+		return "VariableProcessor";
+	}
+
 }
