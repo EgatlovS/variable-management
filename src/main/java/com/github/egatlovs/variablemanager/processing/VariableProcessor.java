@@ -9,10 +9,11 @@ import org.camunda.bpm.engine.variable.Variables.SerializationDataFormats;
 
 import com.github.egatlovs.variablemanager.StoreStrategies;
 import com.github.egatlovs.variablemanager.annotations.Ignore;
+import com.github.egatlovs.variablemanager.exceptions.ExceptionHandler;
 
 public class VariableProcessor {
 
-	public Map<String, Object> process(Object processable) throws IllegalArgumentException, IllegalAccessException {
+	public Map<String, Object> process(Object processable) {
 		Map<String, Object> processedVariables;
 		ExecutionAnnotation execution = new ExecutionAnnotation(processable);
 		if (execution.isStoreFields()) {
@@ -36,8 +37,7 @@ public class VariableProcessor {
 		return processedVariables;
 	}
 
-	private Map<String, Object> getVariablesFromField(Object processable, ExecutionAnnotation execution)
-			throws IllegalArgumentException, IllegalAccessException {
+	private Map<String, Object> getVariablesFromField(Object processable, ExecutionAnnotation execution) {
 		Map<String, Object> processedVariables = new HashMap<>();
 		Field[] fields = processable.getClass().getFields();
 		for (Field field : fields) {
@@ -46,11 +46,17 @@ public class VariableProcessor {
 				if (!field.isAccessible()) {
 					field.setAccessible(true);
 				}
-				if (execution.getStoreStrategy().equals(StoreStrategies.JSON)) {
-					processedVariables.put(fieldAnnotation.getName(), Variables.objectValue(field.get(processable))
-							.serializationDataFormat(SerializationDataFormats.JSON));
-				} else {
-					processedVariables.put(fieldAnnotation.getName(), field.get(processable));
+				try {
+					if (execution.getStoreStrategy().equals(StoreStrategies.JSON)) {
+
+						processedVariables.put(fieldAnnotation.getName(), Variables.objectValue(field.get(processable))
+								.serializationDataFormat(SerializationDataFormats.JSON));
+
+					} else {
+						processedVariables.put(fieldAnnotation.getName(), field.get(processable));
+					}
+				} catch (Exception e) {
+					ExceptionHandler.createVariableProcessingException(e, field, processable);
 				}
 			}
 		}

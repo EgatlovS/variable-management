@@ -1,17 +1,20 @@
 package com.github.egatlovs.variablemanager.processing;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import com.github.egatlovs.variablemanager.annotations.ExecutionField;
+import com.github.egatlovs.variablemanager.exceptions.ExceptionHandler;
 
 public class ResultObject {
 
-	public <T> T getValue(Class<T> clazz, Map<String, Object> variables)
-			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException,
-			NoSuchMethodException, SecurityException {
-		T obj = clazz.getConstructor().newInstance();
+	public <T> T getValue(Class<T> clazz, Map<String, Object> variables) {
+		T obj = null;
+		try {
+			obj = clazz.getConstructor().newInstance();
+		} catch (Exception e) {
+			ExceptionHandler.createResultObjectException(e, clazz);
+		}
 
 		Field[] fields = clazz.getFields();
 		for (Field field : fields) {
@@ -23,7 +26,11 @@ public class ResultObject {
 				key = field.getName();
 			}
 			field.setAccessible(true);
-			field.set(obj, variables.get(key));
+			try {
+				field.set(obj, variables.get(key));
+			} catch (Exception e) {
+				ExceptionHandler.createResultObjectException(e, field, obj);
+			}
 		}
 		return obj;
 	}

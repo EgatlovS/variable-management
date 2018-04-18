@@ -1,6 +1,5 @@
 package com.github.egatlovs.variablemanager.managers;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -29,26 +28,16 @@ public class TaskManager implements TaskVariableManager {
 	public void setVariable(Object value, String taskid) {
 		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
-		try {
-			Map<String, Object> processedVariables = processor.process(value);
-			this.taskService.setVariables(taskid, processedVariables);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			// TODO exception handling
-			e.printStackTrace();
-		}
+		Map<String, Object> processedVariables = processor.process(value);
+		this.taskService.setVariables(taskid, processedVariables);
 	}
 
 	@Override
 	public void setVariableLocal(Object value, String taskid) {
 		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
-		try {
-			Map<String, Object> processedVariables = processor.process(value);
-			this.taskService.setVariablesLocal(taskid, processedVariables);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			// TODO exception handling
-			e.printStackTrace();
-		}
+		Map<String, Object> processedVariables = processor.process(value);
+		this.taskService.setVariablesLocal(taskid, processedVariables);
 	}
 
 	@Override
@@ -58,14 +47,7 @@ public class TaskManager implements TaskVariableManager {
 		for (String name : variableNames) {
 			variables.put(name, this.taskService.getVariable(taskid, name));
 		}
-		try {
-			return new ResultObject().getValue(clazz, variables);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
-			// TODO exception handling
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
+		return new ResultObject().getValue(clazz, variables);
 	}
 
 	@Override
@@ -75,14 +57,7 @@ public class TaskManager implements TaskVariableManager {
 		for (String name : variableNames) {
 			variables.put(name, this.taskService.getVariableLocal(taskid, name));
 		}
-		try {
-			return new ResultObject().getValue(clazz, variables);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
-			// TODO exception handling
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
+		return new ResultObject().getValue(clazz, variables);
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package com.github.egatlovs.variablemanager.managers;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -29,26 +28,16 @@ public class RuntimeManager implements RuntimeVariableManager {
 	public void setVariable(Object value, String executionid) {
 		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
-		try {
-			Map<String, Object> processedVariables = processor.process(value);
-			this.runtimeService.setVariables(executionid, processedVariables);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			// TODO exception handling
-			e.printStackTrace();
-		}
+		Map<String, Object> processedVariables = processor.process(value);
+		this.runtimeService.setVariables(executionid, processedVariables);
 	}
 
 	@Override
 	public void setVariableLocal(Object value, String executionid) {
 		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
-		try {
-			Map<String, Object> processedVariables = processor.process(value);
-			this.runtimeService.setVariablesLocal(executionid, processedVariables);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			// TODO exception handling
-			e.printStackTrace();
-		}
+		Map<String, Object> processedVariables = processor.process(value);
+		this.runtimeService.setVariablesLocal(executionid, processedVariables);
 	}
 
 	@Override
@@ -58,14 +47,7 @@ public class RuntimeManager implements RuntimeVariableManager {
 		for (String name : variableNames) {
 			variables.put(name, this.runtimeService.getVariable(executionid, name));
 		}
-		try {
-			return new ResultObject().getValue(clazz, variables);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
-			// TODO exception handling
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
+		return new ResultObject().getValue(clazz, variables);
 	}
 
 	@Override
@@ -75,14 +57,7 @@ public class RuntimeManager implements RuntimeVariableManager {
 		for (String name : variableNames) {
 			variables.put(name, this.runtimeService.getVariableLocal(executionid, name));
 		}
-		try {
-			return new ResultObject().getValue(clazz, variables);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
-			// TODO exception handling
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
+		return new ResultObject().getValue(clazz, variables);
 	}
 
 	@Override
