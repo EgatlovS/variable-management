@@ -16,6 +16,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<arquillian.version>1.1.2.Final</arquillian.version>
 	</properties>
 
 	<dependencyManagement>
@@ -24,6 +25,14 @@
 				<groupId>org.camunda.bpm</groupId>
 				<artifactId>camunda-bom</artifactId>
 				<version>7.8.0</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<!-- Needed for ArquillianTest -->
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${arquillian.version}</version>
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>

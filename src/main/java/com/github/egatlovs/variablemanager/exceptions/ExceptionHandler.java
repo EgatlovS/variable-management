@@ -8,7 +8,7 @@ public class ExceptionHandler {
 	public static <T> void createResultObjectException(Exception e, Class<T> clazz) {
 		if (e instanceof InstantiationException) {
 			throw new ResultObjectException(
-					"Error reveived while trying to instantiate object of class " + clazz.getName(), e);
+					"Error received while trying to instantiate object of class " + clazz.getName(), e);
 		} else if (e instanceof IllegalAccessException) {
 			throw new ResultObjectException(
 					"Tryed to instantiate object of class " + clazz.getName() + " but was not accessible", e);
