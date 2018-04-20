@@ -16,7 +16,7 @@ public class ResultObject {
 			ExceptionHandler.createResultObjectException(e, clazz);
 		}
 
-		Field[] fields = clazz.getFields();
+		Field[] fields = clazz.getDeclaredFields();
 		for (Field field : fields) {
 			String key;
 			if (field.isAnnotationPresent(ExecutionField.class)) {

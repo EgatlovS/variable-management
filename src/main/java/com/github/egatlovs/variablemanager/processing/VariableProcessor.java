@@ -39,7 +39,7 @@ public class VariableProcessor {
 
 	private Map<String, Object> getVariablesFromField(Object processable, ExecutionAnnotation execution) {
 		Map<String, Object> processedVariables = new HashMap<>();
-		Field[] fields = processable.getClass().getFields();
+		Field[] fields = processable.getClass().getDeclaredFields();
 		for (Field field : fields) {
 			if (!field.isAnnotationPresent(Ignore.class)) {
 				ExecutionFieldAnnotation fieldAnnotation = new ExecutionFieldAnnotation(field);

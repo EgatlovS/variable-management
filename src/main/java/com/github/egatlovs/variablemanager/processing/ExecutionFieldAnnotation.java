@@ -2,6 +2,7 @@ package com.github.egatlovs.variablemanager.processing;
 
 import com.github.egatlovs.variablemanager.annotations.ExecutionField;
 
+// TODO Refactor if fields or classes are used to instantiate this the wrong values are used
 public class ExecutionFieldAnnotation {
 
 	private final ExecutionField executionField;
@@ -16,10 +17,14 @@ public class ExecutionFieldAnnotation {
 		this.annotated = annotated;
 	}
 
+	public boolean isFieldAnnotationPresent() {
+		return executionField != null;
+	}
+
 	public String getName() {
 		String name;
 		if (executionField == null) {
-			name = annotated.getClass().getName();
+			name = annotated.getClass().getSimpleName();
 		} else if (executionField.prefix() == null || executionField.prefix().isEmpty()) {
 			name = executionField.name();
 		} else {

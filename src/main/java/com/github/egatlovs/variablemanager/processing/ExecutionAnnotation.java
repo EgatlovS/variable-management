@@ -3,6 +3,7 @@ package com.github.egatlovs.variablemanager.processing;
 import com.github.egatlovs.variablemanager.StoreStrategies;
 import com.github.egatlovs.variablemanager.annotations.Execution;
 
+//TODO Refactor if fields or classes are used to instantiate this the wrong values are used
 public class ExecutionAnnotation {
 
 	private final Execution execution;
