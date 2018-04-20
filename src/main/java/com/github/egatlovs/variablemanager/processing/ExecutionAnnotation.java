@@ -1,15 +1,23 @@
 package com.github.egatlovs.variablemanager.processing;
 
+import java.lang.reflect.Field;
+
 import com.github.egatlovs.variablemanager.StoreStrategies;
 import com.github.egatlovs.variablemanager.annotations.Execution;
 
-//TODO Refactor if fields or classes are used to instantiate this the wrong values are used
 public class ExecutionAnnotation {
 
 	private final Execution execution;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ExecutionAnnotation(Object o) {
-		this(o.getClass().getAnnotation(Execution.class));
+		if (o instanceof Class) {
+			this.execution = (Execution) ((Class) o).getAnnotation(Execution.class);
+		} else if (o instanceof Field) {
+			this.execution = (Execution) ((Field) o).getAnnotation(Execution.class);
+		} else {
+			this.execution = o.getClass().getAnnotation(Execution.class);
+		}
 	}
 
 	public ExecutionAnnotation(Execution execution) {
@@ -28,11 +36,6 @@ public class ExecutionAnnotation {
 			return true;
 		}
 		return execution.storeFields();
-	}
-
-	@Override
-	public String toString() {
-		return "ExecutionAnnotation [execution=" + execution + "]";
 	}
 
 }

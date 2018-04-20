@@ -26,8 +26,8 @@ public class VariableProcessor {
 
 	private Map<String, Object> getObjectVariable(Object processable, ExecutionAnnotation execution) {
 		Map<String, Object> processedVariables = new HashMap<>();
-		ExecutionFieldAnnotation executionField = new ExecutionFieldAnnotation(processable);
-		String objectName = executionField.getName();
+		FieldName fieldName = new FieldName();
+		String objectName = fieldName.getFrom(processable);
 		if (execution.getStoreStrategy().equals(StoreStrategies.JSON)) {
 			processedVariables.put(objectName,
 					Variables.objectValue(processable).serializationDataFormat(SerializationDataFormats.JSON));
@@ -40,20 +40,20 @@ public class VariableProcessor {
 	private Map<String, Object> getVariablesFromField(Object processable, ExecutionAnnotation execution) {
 		Map<String, Object> processedVariables = new HashMap<>();
 		Field[] fields = processable.getClass().getDeclaredFields();
+		FieldName fieldName = new FieldName();
 		for (Field field : fields) {
 			if (!field.isAnnotationPresent(Ignore.class)) {
-				ExecutionFieldAnnotation fieldAnnotation = new ExecutionFieldAnnotation(field);
 				if (!field.isAccessible()) {
 					field.setAccessible(true);
 				}
 				try {
 					if (execution.getStoreStrategy().equals(StoreStrategies.JSON)) {
 
-						processedVariables.put(fieldAnnotation.getName(), Variables.objectValue(field.get(processable))
+						processedVariables.put(fieldName.getFrom(field), Variables.objectValue(field.get(processable))
 								.serializationDataFormat(SerializationDataFormats.JSON));
 
 					} else {
-						processedVariables.put(fieldAnnotation.getName(), field.get(processable));
+						processedVariables.put(fieldName.getFrom(field), field.get(processable));
 					}
 				} catch (Exception e) {
 					ExceptionHandler.createVariableProcessingException(e, field, processable);
@@ -61,11 +61,6 @@ public class VariableProcessor {
 			}
 		}
 		return processedVariables;
-	}
-
-	@Override
-	public String toString() {
-		return "VariableProcessor";
 	}
 
 }

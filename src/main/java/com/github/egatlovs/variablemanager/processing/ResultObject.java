@@ -17,11 +17,11 @@ public class ResultObject {
 		}
 
 		Field[] fields = clazz.getDeclaredFields();
+		FieldName fieldName = new FieldName();
 		for (Field field : fields) {
 			String key;
 			if (field.isAnnotationPresent(ExecutionField.class)) {
-				ExecutionFieldAnnotation fieldAnnotation = new ExecutionFieldAnnotation(obj);
-				key = fieldAnnotation.getName();
+				key = fieldName.getFrom(obj);
 			} else {
 				key = field.getName();
 			}
@@ -33,11 +33,6 @@ public class ResultObject {
 			}
 		}
 		return obj;
-	}
-
-	@Override
-	public String toString() {
-		return "ResultObject";
 	}
 
 }
