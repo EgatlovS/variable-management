@@ -80,34 +80,4 @@ public class TaskManager implements TaskVariableManager {
 		this.taskService = taskService;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((taskService == null) ? 0 : taskService.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TaskManager other = (TaskManager) obj;
-		if (taskService == null) {
-			if (other.taskService != null)
-				return false;
-		} else if (!taskService.equals(other.taskService))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "TaskManager [taskService=" + taskService + "]";
-	}
-
 }
