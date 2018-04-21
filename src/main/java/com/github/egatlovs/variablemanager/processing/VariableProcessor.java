@@ -30,7 +30,7 @@ public class VariableProcessor {
 		String objectName = fieldName.getFrom(processable);
 		if (execution.getStoreStrategy().equals(StoreStrategies.JSON)) {
 			processedVariables.put(objectName,
-					Variables.objectValue(processable).serializationDataFormat(SerializationDataFormats.JSON));
+					Variables.objectValue(processable).serializationDataFormat(SerializationDataFormats.JSON).create());
 		} else {
 			processedVariables.put(objectName, processable);
 		}
@@ -42,7 +42,7 @@ public class VariableProcessor {
 		Field[] fields = processable.getClass().getDeclaredFields();
 		FieldName fieldName = new FieldName();
 		for (Field field : fields) {
-			if (!field.isAnnotationPresent(Ignore.class)) {
+			if (!field.isSynthetic() && !field.isAnnotationPresent(Ignore.class)) {
 				if (!field.isAccessible()) {
 					field.setAccessible(true);
 				}
@@ -50,7 +50,7 @@ public class VariableProcessor {
 					if (execution.getStoreStrategy().equals(StoreStrategies.JSON)) {
 
 						processedVariables.put(fieldName.getFrom(field), Variables.objectValue(field.get(processable))
-								.serializationDataFormat(SerializationDataFormats.JSON));
+								.serializationDataFormat(SerializationDataFormats.JSON).create());
 
 					} else {
 						processedVariables.put(fieldName.getFrom(field), field.get(processable));
