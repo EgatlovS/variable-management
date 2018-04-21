@@ -21,7 +21,7 @@ public class ResultObject {
 		for (Field field : fields) {
 			String key;
 			if (field.isAnnotationPresent(ExecutionField.class)) {
-				key = fieldName.getFrom(obj);
+				key = fieldName.getFrom(field);
 			} else {
 				key = field.getName();
 			}
