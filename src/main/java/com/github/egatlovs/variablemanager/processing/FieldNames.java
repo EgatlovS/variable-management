@@ -32,7 +32,7 @@ public class FieldNames {
 		Field[] fields = clazz.getDeclaredFields();
 		FieldName fieldName = new FieldName();
 		for (Field field : fields) {
-			if (!field.isAnnotationPresent(Ignore.class)) {
+			if (!field.isSynthetic() && !field.isAnnotationPresent(Ignore.class)) {
 				names.add(fieldName.getFrom(field));
 			}
 		}
