@@ -7,12 +7,54 @@ import java.util.Map;
 import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.variable.Variables.SerializationDataFormats;
 
-import com.github.egatlovs.variablemanager.StoreStrategies;
 import com.github.egatlovs.variablemanager.annotations.Ignore;
+import com.github.egatlovs.variablemanager.annotations.StoreStrategies;
+import com.github.egatlovs.variablemanager.exceptions.ExceptionHandler;
+import com.github.egatlovs.variablemanager.exceptions.VariableProcessingException;
 
+/**
+ * <b>VariableProcessor</b></br>
+ * </br>
+ * This class processes a given Object and extracts each variable declared in
+ * it.</br>
+ * After processing, a Map of variables and their execution names is
+ * returned.</br>
+ * </br>
+ * <b>Note:</b></br>
+ * <i>You can manipulate the outcome of the Class by using following
+ * annotations:</i>
+ * <ul>
+ * <li>{@code @Ignore}</li>
+ * <li>{@code @Execution}</li>
+ * <li>{@code @ExecutionAnnotation}</li>
+ * </ul>
+ * </br>
+ * 
+ * @author egatlovs
+ */
 public class VariableProcessor {
 
-	public Map<String, Object> process(Object processable) throws IllegalArgumentException, IllegalAccessException {
+	/**
+	 * Processe takes an Object and extracts each variable declared in it.</br>
+	 * After extracting the variables and their names a Map of them is
+	 * returned.</br>
+	 * </br>
+	 * <b>Note:</b></br>
+	 * <i>You can manipulate the outcome of the Class by using following
+	 * annotations:</i>
+	 * <ul>
+	 * <li>{@code @Ignore}</li>
+	 * <li>{@code @Execution}</li>
+	 * <li>{@code @ExecutionAnnotation}</li>
+	 * </ul>
+	 * </br>
+	 * 
+	 * @throws VariableProcessingException
+	 * @param processable
+	 *            - The Object being processed
+	 * @return A Map of variables and their names
+	 */
+	public Map<String, Object> process(Object processable) {
 		Map<String, Object> processedVariables;
 		ExecutionAnnotation execution = new ExecutionAnnotation(processable);
 		if (execution.isStoreFields()) {
@@ -25,32 +67,37 @@ public class VariableProcessor {
 
 	private Map<String, Object> getObjectVariable(Object processable, ExecutionAnnotation execution) {
 		Map<String, Object> processedVariables = new HashMap<>();
-		ExecutionFieldAnnotation executionField = new ExecutionFieldAnnotation(processable);
-		String objectName = executionField.getName();
+		FieldName fieldName = new FieldName();
+		String objectName = fieldName.getFrom(processable);
 		if (execution.getStoreStrategy().equals(StoreStrategies.JSON)) {
 			processedVariables.put(objectName,
-					Variables.objectValue(processable).serializationDataFormat(SerializationDataFormats.JSON));
+					Variables.objectValue(processable).serializationDataFormat(SerializationDataFormats.JSON).create());
 		} else {
 			processedVariables.put(objectName, processable);
 		}
 		return processedVariables;
 	}
 
-	private Map<String, Object> getVariablesFromField(Object processable, ExecutionAnnotation execution)
-			throws IllegalArgumentException, IllegalAccessException {
+	private Map<String, Object> getVariablesFromField(Object processable, ExecutionAnnotation execution) {
 		Map<String, Object> processedVariables = new HashMap<>();
-		Field[] fields = processable.getClass().getFields();
+		Field[] fields = processable.getClass().getDeclaredFields();
+		FieldName fieldName = new FieldName();
 		for (Field field : fields) {
-			if (!field.isAnnotationPresent(Ignore.class)) {
-				ExecutionFieldAnnotation fieldAnnotation = new ExecutionFieldAnnotation(field);
+			if (!field.isSynthetic() && !field.isAnnotationPresent(Ignore.class)) {
 				if (!field.isAccessible()) {
 					field.setAccessible(true);
 				}
-				if (execution.getStoreStrategy().equals(StoreStrategies.JSON)) {
-					processedVariables.put(fieldAnnotation.getName(), Variables.objectValue(field.get(processable))
-							.serializationDataFormat(SerializationDataFormats.JSON));
-				} else {
-					processedVariables.put(fieldAnnotation.getName(), field.get(processable));
+				try {
+					if (execution.getStoreStrategy().equals(StoreStrategies.JSON)) {
+
+						processedVariables.put(fieldName.getFrom(field), Variables.objectValue(field.get(processable))
+								.serializationDataFormat(SerializationDataFormats.JSON).create());
+
+					} else {
+						processedVariables.put(fieldName.getFrom(field), field.get(processable));
+					}
+				} catch (Exception e) {
+					ExceptionHandler.createVariableProcessingException(e, field, processable);
 				}
 			}
 		}

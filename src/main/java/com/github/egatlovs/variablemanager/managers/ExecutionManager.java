@@ -1,6 +1,5 @@
 package com.github.egatlovs.variablemanager.managers;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -15,11 +14,32 @@ import com.github.egatlovs.variablemanager.processing.ResultObject;
 import com.github.egatlovs.variablemanager.processing.VariableProcessor;
 import com.github.egatlovs.variablemanager.validation.VariableValidator;
 
+/**
+ * <b>ExecutionManager</b></br>
+ * </br>
+ * ExecutionManager wraps a DelegateExecution and offers methods to set, get and
+ * remove variables based of an ExecutionEntity.</br>
+ * The Manager itself uses BeanValidation on each given Object, so you can
+ * simply annotate your ExecutionEntitys with the well known BeanValidation
+ * annotations. </br>
+ * </br>
+ * The ExecutionManager is injectable. If you inject it in your bean it will
+ * initialize itself with the current delegate execution if present. Otherwise
+ * if no execution is present the Manager will initialize itself with null.
+ * 
+ * @author egatlovs
+ */
 @RequestScoped
 public class ExecutionManager implements ExecutionVariableManager {
 
 	private DelegateExecution execution;
 
+	/**
+	 * Constructor defining the execution to be used.
+	 * 
+	 * @param execution
+	 *            - The execution to be used or the CurrentExcution if injected
+	 */
 	@Inject
 	public ExecutionManager(DelegateExecution execution) {
 		this.execution = execution;
@@ -29,26 +49,16 @@ public class ExecutionManager implements ExecutionVariableManager {
 	public void setVariable(Object value) {
 		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
-		try {
-			Map<String, Object> processedVariables = processor.process(value);
-			this.execution.setVariables(processedVariables);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			// TODO exception handling
-			e.printStackTrace();
-		}
+		Map<String, Object> processedVariables = processor.process(value);
+		this.execution.setVariables(processedVariables);
 	}
 
 	@Override
 	public void setVariableLocal(Object value) {
 		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
-		try {
-			Map<String, Object> processedVariables = processor.process(value);
-			this.execution.setVariablesLocal(processedVariables);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			// TODO exception handling
-			e.printStackTrace();
-		}
+		Map<String, Object> processedVariables = processor.process(value);
+		this.execution.setVariablesLocal(processedVariables);
 	}
 
 	@Override
@@ -58,14 +68,7 @@ public class ExecutionManager implements ExecutionVariableManager {
 		for (String name : variableNames) {
 			variables.put(name, this.execution.getVariable(name));
 		}
-		try {
-			return new ResultObject().getValue(clazz, variables);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
-			// TODO exception handling
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
+		return new ResultObject().getValue(clazz, variables);
 	}
 
 	@Override
@@ -75,14 +78,7 @@ public class ExecutionManager implements ExecutionVariableManager {
 		for (String name : variableNames) {
 			variables.put(name, this.execution.getVariableLocal(name));
 		}
-		try {
-			return new ResultObject().getValue(clazz, variables);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
-			// TODO exception handling
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
+		return new ResultObject().getValue(clazz, variables);
 	}
 
 	@Override
@@ -97,11 +93,14 @@ public class ExecutionManager implements ExecutionVariableManager {
 		this.execution.removeVariablesLocal(variableNames);
 	}
 
+	@Override
 	public DelegateExecution getExecutionService() {
 		return execution;
 	}
 
+	@Override
 	public void setExecutionService(DelegateExecution execution) {
 		this.execution = execution;
 	}
+
 }

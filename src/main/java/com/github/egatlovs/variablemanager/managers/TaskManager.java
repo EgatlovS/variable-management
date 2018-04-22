@@ -1,6 +1,5 @@
 package com.github.egatlovs.variablemanager.managers;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -15,11 +14,31 @@ import com.github.egatlovs.variablemanager.processing.ResultObject;
 import com.github.egatlovs.variablemanager.processing.VariableProcessor;
 import com.github.egatlovs.variablemanager.validation.VariableValidator;
 
+/**
+ * <b>TaskManager</b></br>
+ * </br>
+ * TaskManager wraps a TaskService and offers methods to set, get and remove
+ * variables based of an ExecutionEntity.</br>
+ * The Manager itself uses BeanValidation on each given Object, so you can
+ * simply annotate your ExecutionEntitys with the well known BeanValidation
+ * annotations. </br>
+ * </br>
+ * The TaskManager is injectable. If you inject it in your bean it will
+ * initialize itself with the TaskManager provided in the environment.
+ * 
+ * @author egatlovs
+ */
 @RequestScoped
 public class TaskManager implements TaskVariableManager {
 
 	private TaskService taskService;
 
+	/**
+	 * Constructor defining the taskService to be used.
+	 * 
+	 * @param taskService
+	 *            - The taskService to be used
+	 */
 	@Inject
 	public TaskManager(TaskService taskService) {
 		this.taskService = taskService;
@@ -29,26 +48,16 @@ public class TaskManager implements TaskVariableManager {
 	public void setVariable(Object value, String taskid) {
 		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
-		try {
-			Map<String, Object> processedVariables = processor.process(value);
-			this.taskService.setVariables(taskid, processedVariables);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			// TODO exception handling
-			e.printStackTrace();
-		}
+		Map<String, Object> processedVariables = processor.process(value);
+		this.taskService.setVariables(taskid, processedVariables);
 	}
 
 	@Override
 	public void setVariableLocal(Object value, String taskid) {
 		VariableValidator.validate(value);
 		VariableProcessor processor = new VariableProcessor();
-		try {
-			Map<String, Object> processedVariables = processor.process(value);
-			this.taskService.setVariablesLocal(taskid, processedVariables);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			// TODO exception handling
-			e.printStackTrace();
-		}
+		Map<String, Object> processedVariables = processor.process(value);
+		this.taskService.setVariablesLocal(taskid, processedVariables);
 	}
 
 	@Override
@@ -58,14 +67,7 @@ public class TaskManager implements TaskVariableManager {
 		for (String name : variableNames) {
 			variables.put(name, this.taskService.getVariable(taskid, name));
 		}
-		try {
-			return new ResultObject().getValue(clazz, variables);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
-			// TODO exception handling
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
+		return new ResultObject().getValue(clazz, variables);
 	}
 
 	@Override
@@ -75,14 +77,7 @@ public class TaskManager implements TaskVariableManager {
 		for (String name : variableNames) {
 			variables.put(name, this.taskService.getVariableLocal(taskid, name));
 		}
-		try {
-			return new ResultObject().getValue(clazz, variables);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
-			// TODO exception handling
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
+		return new ResultObject().getValue(clazz, variables);
 	}
 
 	@Override
@@ -97,10 +92,12 @@ public class TaskManager implements TaskVariableManager {
 		this.taskService.removeVariablesLocal(taskid, variableNames);
 	}
 
+	@Override
 	public TaskService getExecutionService() {
 		return taskService;
 	}
 
+	@Override
 	public void setExecutionService(TaskService taskService) {
 		this.taskService = taskService;
 	}
