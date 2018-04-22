@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.assertj.core.api.Assertions;
-import org.camunda.bpm.engine.delegate.DelegateExecution;
+import org.camunda.bpm.engine.TaskService;
 import org.junit.Test;
 
 import com.github.egatlovs.mock.ManagerFieldMock;
-import com.github.egatlovs.util.builder.ExecutionMockBuilder;
-import com.github.egatlovs.variablemanager.managers.ExecutionManager;
+import com.github.egatlovs.util.builder.TaskServiceMockBuilder;
+import com.github.egatlovs.variablemanager.managers.TaskManager;
 
-public class ExecutionManagerTest {
+public class TaskManagerTest {
 
 	@Test
 	public void Should_Remove_Declared_Field_From_Execution() {
@@ -20,11 +20,11 @@ public class ExecutionManagerTest {
 		variables.put("someString", "string");
 		variables.put("fieldPrefix_fieldName", "annotatedString");
 		variables.put("myDecimal", BigDecimal.ONE);
-		DelegateExecution execution = ExecutionMockBuilder.build(variables);
-		ExecutionManager manager = new ExecutionManager(execution);
-		manager.removeVariables(ManagerFieldMock.class);
+		TaskService service = TaskServiceMockBuilder.build(variables);
+		TaskManager manager = new TaskManager(service);
+		manager.removeVariables(ManagerFieldMock.class, "taskId");
 
-		Assertions.assertThat(execution.getVariables()).isEmpty();
+		Assertions.assertThat(service.getVariables("taskId")).isEmpty();
 	}
 
 	@Test
@@ -33,11 +33,11 @@ public class ExecutionManagerTest {
 		variables.put("someString", "string");
 		variables.put("fieldPrefix_fieldName", "annotatedString");
 		variables.put("myDecimal", BigDecimal.ONE);
-		DelegateExecution execution = ExecutionMockBuilder.build(variables);
-		ExecutionManager manager = new ExecutionManager(execution);
-		manager.removeVariablesLocal(ManagerFieldMock.class);
+		TaskService service = TaskServiceMockBuilder.build(variables);
+		TaskManager manager = new TaskManager(service);
+		manager.removeVariablesLocal(ManagerFieldMock.class, "taskId");
 
-		Assertions.assertThat(execution.getVariables()).isEmpty();
+		Assertions.assertThat(service.getVariablesLocal("taskId")).isEmpty();
 	}
 
 	@Test
@@ -47,9 +47,9 @@ public class ExecutionManagerTest {
 		variables.put("fieldPrefix_fieldName", "myAnnotated");
 		variables.put("myDecimal", BigDecimal.ONE);
 		variables.put("ignoredField", new Object());
-		DelegateExecution execution = ExecutionMockBuilder.build(variables);
-		ExecutionManager manager = new ExecutionManager(execution);
-		ManagerFieldMock mock = manager.getVariable(ManagerFieldMock.class);
+		TaskService service = TaskServiceMockBuilder.build(variables);
+		TaskManager manager = new TaskManager(service);
+		ManagerFieldMock mock = manager.getVariable(ManagerFieldMock.class, "taskId");
 
 		Assertions.assertThat(mock.getAnnotated()).isEqualTo("myAnnotated");
 		Assertions.assertThat(mock.getIgnoredField()).isNull();
@@ -64,9 +64,9 @@ public class ExecutionManagerTest {
 		variables.put("fieldPrefix_fieldName", "myAnnotated");
 		variables.put("myDecimal", BigDecimal.ONE);
 		variables.put("ignoredField", new Object());
-		DelegateExecution execution = ExecutionMockBuilder.build(variables);
-		ExecutionManager manager = new ExecutionManager(execution);
-		ManagerFieldMock mock = manager.getVariableLocal(ManagerFieldMock.class);
+		TaskService service = TaskServiceMockBuilder.build(variables);
+		TaskManager manager = new TaskManager(service);
+		ManagerFieldMock mock = manager.getVariableLocal(ManagerFieldMock.class, "taskId");
 
 		Assertions.assertThat(mock.getAnnotated()).isEqualTo("myAnnotated");
 		Assertions.assertThat(mock.getIgnoredField()).isNull();
@@ -77,27 +77,27 @@ public class ExecutionManagerTest {
 	@Test
 	public void Should_Set_Declared_Field_To_Execution() {
 		ManagerFieldMock mock = new ManagerFieldMock();
-		DelegateExecution execution = ExecutionMockBuilder.build();
-		ExecutionManager manager = new ExecutionManager(execution);
-		manager.setVariable(mock);
+		TaskService service = TaskServiceMockBuilder.build();
+		TaskManager manager = new TaskManager(service);
+		manager.setVariable(mock, "taskId");
 
-		Assertions.assertThat(execution.getVariable("someString")).isEqualTo("string");
-		Assertions.assertThat(execution.getVariable("ignoredField")).isNull();
-		Assertions.assertThat(execution.getVariable("fieldPrefix_fieldName")).isEqualTo("annotatedString");
-		Assertions.assertThat(execution.getVariable("myDecimal")).isEqualTo(BigDecimal.ONE);
+		Assertions.assertThat(service.getVariable("taskId", "someString")).isEqualTo("string");
+		Assertions.assertThat(service.getVariable("taskId", "ignoredField")).isNull();
+		Assertions.assertThat(service.getVariable("taskId", "fieldPrefix_fieldName")).isEqualTo("annotatedString");
+		Assertions.assertThat(service.getVariable("taskId", "myDecimal")).isEqualTo(BigDecimal.ONE);
 	}
 
 	@Test
 	public void Should_Set_Declared_Field_To_Local_Execution() {
 		ManagerFieldMock mock = new ManagerFieldMock();
-		DelegateExecution execution = ExecutionMockBuilder.build();
-		ExecutionManager manager = new ExecutionManager(execution);
-		manager.setVariableLocal(mock);
+		TaskService service = TaskServiceMockBuilder.build();
+		TaskManager manager = new TaskManager(service);
+		manager.setVariableLocal(mock, "taskId");
 
-		Assertions.assertThat(execution.getVariableLocal("someString")).isEqualTo("string");
-		Assertions.assertThat(execution.getVariableLocal("ignoredField")).isNull();
-		Assertions.assertThat(execution.getVariableLocal("fieldPrefix_fieldName")).isEqualTo("annotatedString");
-		Assertions.assertThat(execution.getVariableLocal("myDecimal")).isEqualTo(BigDecimal.ONE);
+		Assertions.assertThat(service.getVariableLocal("taskId", "someString")).isEqualTo("string");
+		Assertions.assertThat(service.getVariableLocal("taskId", "ignoredField")).isNull();
+		Assertions.assertThat(service.getVariableLocal("taskId", "fieldPrefix_fieldName")).isEqualTo("annotatedString");
+		Assertions.assertThat(service.getVariableLocal("taskId", "myDecimal")).isEqualTo(BigDecimal.ONE);
 	}
 
 }
