@@ -45,24 +45,6 @@ public class ExecutionManager implements ExecutionVariableManager {
 		this.execution = execution;
 	}
 
-	/**
-	 * Sets a Variable to the Execution. </br>
-	 * </br>
-	 * <b>Note:</b> the variable will be processed as follows:
-	 * <ol>
-	 * <li>The object will be validated using bean validation.</li>
-	 * <li>The given object will be processed using
-	 * {@code VariableProcessor.class}</li>
-	 * </ol>
-	 * If you want more Information of how variables are processed watch out for
-	 * {@code VariableProcessor.class}. </br>
-	 * If you want to manipulate how your variables are processed look for
-	 * {@code @Execution}, {@code @ExecutionField} and {@code @Ignore}. </br>
-	 * </br>
-	 * 
-	 * @param value
-	 *            - The value to be set to the Execution
-	 */
 	@Override
 	public void setVariable(Object value) {
 		VariableValidator.validate(value);
@@ -71,24 +53,6 @@ public class ExecutionManager implements ExecutionVariableManager {
 		this.execution.setVariables(processedVariables);
 	}
 
-	/**
-	 * Sets a Variable Locally to the Execution. </br>
-	 * </br>
-	 * <b>Note:</b> the variable will be processed as follows:
-	 * <ol>
-	 * <li>The object will be validated using bean validation.</li>
-	 * <li>The given object will be processed using
-	 * {@code VariableProcessor.class}</li>
-	 * </ol>
-	 * If you want more Information of how variables are processed watch out for
-	 * {@code VariableProcessor.class}. </br>
-	 * If you want to manipulate how your variables are processed look for
-	 * {@code @Execution}, {@code @ExecutionField} and {@code @Ignore}. </br>
-	 * </br>
-	 * 
-	 * @param value
-	 *            - The value to be set to the Execution
-	 */
 	@Override
 	public void setVariableLocal(Object value) {
 		VariableValidator.validate(value);
@@ -97,20 +61,6 @@ public class ExecutionManager implements ExecutionVariableManager {
 		this.execution.setVariablesLocal(processedVariables);
 	}
 
-	/**
-	 * Retrieves a Variable from the Execution. </br>
-	 * </br>
-	 * The variables will be read from the given class using
-	 * {@code FieldNames.class}. After that each variable will be called out of the
-	 * execution. </br>
-	 * Now that each variable is retrieved from the execution, the
-	 * {@code ResultObject.class} will be used to build the requested object which
-	 * is then returned. </br>
-	 * 
-	 * @param clazz
-	 *            - The Class which should be gathered
-	 * @return - The Object of the requested class
-	 */
 	@Override
 	public <T> T getVariable(Class<T> clazz) {
 		Set<String> variableNames = new FieldNames().get(clazz);
@@ -121,20 +71,6 @@ public class ExecutionManager implements ExecutionVariableManager {
 		return new ResultObject().getValue(clazz, variables);
 	}
 
-	/**
-	 * Retrieves a Variable locally from the Execution. </br>
-	 * </br>
-	 * The variables will be read from the given class using
-	 * {@code FieldNames.class}. After that each variable will be called out of the
-	 * execution. </br>
-	 * Now that each variable is retrieved from the execution, the
-	 * {@code ResultObject.class} will be used to build the requested object which
-	 * is then returned. </br>
-	 * 
-	 * @param clazz
-	 *            - The Class which should be gathered
-	 * @return - The Object of the requested class
-	 */
 	@Override
 	public <T> T getVariableLocal(Class<T> clazz) {
 		Set<String> variableNames = new FieldNames().get(clazz);
@@ -145,55 +81,24 @@ public class ExecutionManager implements ExecutionVariableManager {
 		return new ResultObject().getValue(clazz, variables);
 	}
 
-	/**
-	 * Removes a Variable from the Execution. </br>
-	 * </br>
-	 * The variables will be read from the given class using
-	 * {@code FieldNames.class}. After that each variable will be removed from the
-	 * execution. </br>
-	 * 
-	 * @param clazz
-	 *            - The Class which should be used to retrieve the fieldnames to be
-	 *            deleted
-	 */
 	@Override
 	public <T> void removeVariables(Class<T> clazz) {
 		Set<String> variableNames = new FieldNames().get(clazz);
 		this.execution.removeVariables(variableNames);
 	}
 
-	/**
-	 * Removes Variables locally from the Execution. </br>
-	 * </br>
-	 * The variables will be read from the given class using
-	 * {@code FieldNames.class}. After that each variable will be removed from the
-	 * execution. </br>
-	 * 
-	 * @param clazz
-	 *            - The Class which should be used to retrieve the fieldnames to be
-	 *            deleted
-	 */
 	@Override
 	public <T> void removeVariablesLocal(Class<T> clazz) {
 		Set<String> variableNames = new FieldNames().get(clazz);
 		this.execution.removeVariablesLocal(variableNames);
 	}
 
-	/**
-	 * Gives acces to the wrapped execution.
-	 * 
-	 * @return Returns the wrapped execution
-	 */
+	@Override
 	public DelegateExecution getExecutionService() {
 		return execution;
 	}
 
-	/**
-	 * Manipulate the execution used.
-	 * 
-	 * @param execution
-	 *            - The new execution to be used
-	 */
+	@Override
 	public void setExecutionService(DelegateExecution execution) {
 		this.execution = execution;
 	}
