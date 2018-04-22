@@ -14,11 +14,31 @@ import com.github.egatlovs.variablemanager.processing.ResultObject;
 import com.github.egatlovs.variablemanager.processing.VariableProcessor;
 import com.github.egatlovs.variablemanager.validation.VariableValidator;
 
+/**
+ * <b>TaskManager</b></br>
+ * </br>
+ * TaskManager wraps a TaskService and offers methods to set, get and remove
+ * variables based of an ExecutionEntity.</br>
+ * The Manager itself uses BeanValidation on each given Object, so you can
+ * simply annotate your ExecutionEntitys with the well known BeanValidation
+ * annotations. </br>
+ * </br>
+ * The TaskManager is injectable. If you inject it in your bean it will
+ * initialize itself with the TaskManager provided in the environment.
+ * 
+ * @author egatlovs
+ */
 @RequestScoped
 public class TaskManager implements TaskVariableManager {
 
 	private TaskService taskService;
 
+	/**
+	 * Constructor defining the taskService to be used.
+	 * 
+	 * @param taskService
+	 *            - The taskService to be used
+	 */
 	@Inject
 	public TaskManager(TaskService taskService) {
 		this.taskService = taskService;
@@ -72,10 +92,12 @@ public class TaskManager implements TaskVariableManager {
 		this.taskService.removeVariablesLocal(taskid, variableNames);
 	}
 
+	@Override
 	public TaskService getExecutionService() {
 		return taskService;
 	}
 
+	@Override
 	public void setExecutionService(TaskService taskService) {
 		this.taskService = taskService;
 	}
