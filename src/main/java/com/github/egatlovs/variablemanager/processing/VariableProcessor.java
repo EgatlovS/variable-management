@@ -7,8 +7,8 @@ import java.util.Map;
 import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.variable.Variables.SerializationDataFormats;
 
-import com.github.egatlovs.variablemanager.StoreStrategies;
 import com.github.egatlovs.variablemanager.annotations.Ignore;
+import com.github.egatlovs.variablemanager.annotations.StoreStrategies;
 import com.github.egatlovs.variablemanager.exceptions.ExceptionHandler;
 
 public class VariableProcessor {

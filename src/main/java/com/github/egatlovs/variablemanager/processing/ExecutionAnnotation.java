@@ -2,8 +2,8 @@ package com.github.egatlovs.variablemanager.processing;
 
 import java.lang.reflect.Field;
 
-import com.github.egatlovs.variablemanager.StoreStrategies;
 import com.github.egatlovs.variablemanager.annotations.Execution;
+import com.github.egatlovs.variablemanager.annotations.StoreStrategies;
 
 public class ExecutionAnnotation {
 

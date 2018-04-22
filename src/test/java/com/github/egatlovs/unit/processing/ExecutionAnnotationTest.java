@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import com.github.egatlovs.mock.ExecutionAnnotationMock;
-import com.github.egatlovs.variablemanager.StoreStrategies;
+import com.github.egatlovs.variablemanager.annotations.StoreStrategies;
 import com.github.egatlovs.variablemanager.processing.ExecutionAnnotation;
 
 public class ExecutionAnnotationTest {

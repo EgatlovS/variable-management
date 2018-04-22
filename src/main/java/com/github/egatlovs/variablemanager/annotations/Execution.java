@@ -6,8 +6,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import com.github.egatlovs.variablemanager.StoreStrategies;
-
 /**
  * <b>Execution</b></br>
  * </br>

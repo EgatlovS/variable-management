@@ -1,4 +1,4 @@
-package com.github.egatlovs.variablemanager;
+package com.github.egatlovs.variablemanager.interfaces;
 
 public interface FieldConfig {
 
