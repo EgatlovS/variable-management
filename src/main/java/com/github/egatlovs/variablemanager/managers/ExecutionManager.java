@@ -17,9 +17,9 @@ import com.github.egatlovs.variablemanager.validation.VariableValidator;
 /**
  * <b>ExecutionManager</b></br>
  * </br>
- * ExecutionManager wrappes a DelegateExecution and offers methods to set, get
- * and remove variables based of an ExecutionEntity.</br>
- * The Manager it self uses BeanValidation on each given Object, so you can
+ * ExecutionManager wraps a DelegateExecution and offers methods to set, get and
+ * remove variables based of an ExecutionEntity.</br>
+ * The Manager itself uses BeanValidation on each given Object, so you can
  * simply annotate your ExecutionEntitys with the well known BeanValidation
  * annotations. </br>
  * </br>

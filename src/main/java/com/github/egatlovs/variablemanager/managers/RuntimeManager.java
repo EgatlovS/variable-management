@@ -14,11 +14,31 @@ import com.github.egatlovs.variablemanager.processing.ResultObject;
 import com.github.egatlovs.variablemanager.processing.VariableProcessor;
 import com.github.egatlovs.variablemanager.validation.VariableValidator;
 
+/**
+ * <b>RuntimeManager</b></br>
+ * </br>
+ * RuntimeManager wraps a RuntimeService and offers methods to set, get and
+ * remove variables based of an ExecutionEntity.</br>
+ * The Manager itself uses BeanValidation on each given Object, so you can
+ * simply annotate your ExecutionEntitys with the well known BeanValidation
+ * annotations. </br>
+ * </br>
+ * The RuntimeManager is injectable. If you inject it in your bean it will
+ * initialize itself with the RuntimeManager provided in the environment.
+ * 
+ * @author egatlovs
+ */
 @RequestScoped
 public class RuntimeManager implements RuntimeVariableManager {
 
 	private RuntimeService runtimeService;
 
+	/**
+	 * Constructor defining the runtimeService to be used.
+	 * 
+	 * @param runtimeService
+	 *            - The runtimeService to be used
+	 */
 	@Inject
 	public RuntimeManager(RuntimeService runtimeService) {
 		this.setExecutionService(runtimeService);
@@ -72,10 +92,12 @@ public class RuntimeManager implements RuntimeVariableManager {
 		this.runtimeService.removeVariablesLocal(executionid, variableNames);
 	}
 
+	@Override
 	public RuntimeService getExecutionService() {
 		return runtimeService;
 	}
 
+	@Override
 	public void setExecutionService(RuntimeService runtimeService) {
 		this.runtimeService = runtimeService;
 	}
