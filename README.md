@@ -70,11 +70,11 @@ And now think how about how your code would Look like if you gather 20 different
 Yes thats a mess.
 
 It you read through until now and you actually dont think i made a huge mistake, you can see some examples on how i personally tried to make things less messy and make everything feel a little more known.
-Otherwise if you thing im totally wrong dont hesitate contact me and let me learn from my mistakes.
+Otherwise if you think im totally wrong dont hesitate contact me and let me learn from my mistakes.
 
 ## Introduction
 
-This Project provides Object called Managers which wrap camunda Services and give you the ability to write and read variables in a different way.
+This Project provides Objects called Managers which wrap camunda Services and give you the ability to write and read variables in a different way.
 The first release focuses a lot on JPA like behaviour with Entitys and BeanValidation.
 
 ### Managers
