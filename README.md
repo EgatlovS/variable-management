@@ -9,12 +9,12 @@ I personally recognized that executing tasks developing and modelling a process 
 
 ## Content
 
-- [The reason why](the-reason-why)
-- [Introduction](introduction)
-    - [Managers](managers)
-    - [Annotations](annotations)
-- [Examples](examples)
-- [Epilogue](epilogue)
+- [The reason why](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#the-reason-why)
+- [Introduction](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#introduction)
+    - [Managers](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#managers)
+    - [Annotations](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#annotations)
+- [Examples](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#examples)
+- [Epilogue](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#epilogue)
 
 
 ## The reason why
