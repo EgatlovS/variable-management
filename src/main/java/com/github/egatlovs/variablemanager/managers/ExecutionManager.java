@@ -32,17 +32,20 @@ import com.github.egatlovs.variablemanager.validation.VariableValidator;
 @RequestScoped
 public class ExecutionManager implements ExecutionVariableManager {
 
+	@Inject
 	private DelegateExecution execution;
 
 	/**
 	 * Constructor defining the execution to be used.
 	 * 
 	 * @param execution
-	 *            - The execution to be used or the CurrentExcution if injected
+	 *            - The execution to be used
 	 */
-	@Inject
 	public ExecutionManager(DelegateExecution execution) {
 		this.execution = execution;
+	}
+
+	public ExecutionManager() {
 	}
 
 	@Override

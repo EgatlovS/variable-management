@@ -6,16 +6,22 @@ import javax.inject.Inject;
 @RequestScoped
 public class VariableManager {
 
+	@Inject
 	private ExecutionVariableManager executionManager;
+	@Inject
 	private RuntimeVariableManager runtimeManager;
+	@Inject
 	private TaskVariableManager taskManager;
 
-	@Inject
 	public VariableManager(ExecutionVariableManager executionManager, RuntimeVariableManager runtimeManager,
 			TaskVariableManager taskManager) {
 		this.executionManager = executionManager;
 		this.runtimeManager = runtimeManager;
 		this.taskManager = taskManager;
+	}
+
+	@Inject
+	public VariableManager() {
 	}
 
 	public ExecutionVariableManager getExecutionManager() {

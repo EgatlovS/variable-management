@@ -31,6 +31,7 @@ import com.github.egatlovs.variablemanager.validation.VariableValidator;
 @RequestScoped
 public class TaskManager implements TaskVariableManager {
 
+	@Inject
 	private TaskService taskService;
 
 	/**
@@ -39,9 +40,11 @@ public class TaskManager implements TaskVariableManager {
 	 * @param taskService
 	 *            - The taskService to be used
 	 */
-	@Inject
 	public TaskManager(TaskService taskService) {
 		this.taskService = taskService;
+	}
+
+	public TaskManager() {
 	}
 
 	@Override

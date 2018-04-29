@@ -31,6 +31,7 @@ import com.github.egatlovs.variablemanager.validation.VariableValidator;
 @RequestScoped
 public class RuntimeManager implements RuntimeVariableManager {
 
+	@Inject
 	private RuntimeService runtimeService;
 
 	/**
@@ -39,9 +40,11 @@ public class RuntimeManager implements RuntimeVariableManager {
 	 * @param runtimeService
 	 *            - The runtimeService to be used
 	 */
-	@Inject
 	public RuntimeManager(RuntimeService runtimeService) {
 		this.setExecutionService(runtimeService);
+	}
+
+	public RuntimeManager() {
 	}
 
 	@Override
