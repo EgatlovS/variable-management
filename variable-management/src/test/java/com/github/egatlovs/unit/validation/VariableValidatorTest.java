@@ -14,7 +14,7 @@ public class VariableValidatorTest {
 	@Test
 	public void Should_Validate_MockObject() {
 		ValidationMock mock = new ValidationMock();
-		mock.setNotNullString(new String());
+		mock.setNotNullString("");
 		String[] array = { "1", "2", "3", "4", "5" };
 		mock.setSizeList(Arrays.asList(array));
 		VariableValidator.validate(mock);

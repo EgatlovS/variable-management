@@ -21,7 +21,7 @@ public class ConstraintViolationMessage {
 	 * ConstraintViolations.
 	 * 
 	 * @param constraintViolations
-	 *            - The violations occured while validating
+	 *            - The violations ocured while validating
 	 */
 	public ConstraintViolationMessage(Set<ConstraintViolation<Object>> constraintViolations) {
 		this.constraintViolations = constraintViolations;
@@ -34,11 +34,11 @@ public class ConstraintViolationMessage {
 	 * @return - The formatted ConstraintViolations
 	 */
 	public String getMessage() {
-		StringBuilder sb = new StringBuilder("Constraint Violations occured: \n");
+		StringBuilder sb = new StringBuilder("Constraint Violations ocured: \n");
 		for (ConstraintViolation<Object> constraintViolation : constraintViolations) {
 			sb.append("Field ").append(constraintViolation.getPropertyPath()).append(" of ")
 					.append(constraintViolation.getLeafBean()).append(" ").append(constraintViolation.getMessage())
-					.append(" acutal value was ").append(constraintViolation.getInvalidValue()).append("\n");
+					.append(" actual value was ").append(constraintViolation.getInvalidValue()).append("\n");
 		}
 		return sb.toString();
 	}

@@ -20,7 +20,6 @@ public class VariableManager {
 		this.taskManager = taskManager;
 	}
 
-	@Inject
 	public VariableManager() {
 	}
 
@@ -78,11 +77,8 @@ public class VariableManager {
 		} else if (!runtimeManager.equals(other.runtimeManager))
 			return false;
 		if (taskManager == null) {
-			if (other.taskManager != null)
-				return false;
-		} else if (!taskManager.equals(other.taskManager))
-			return false;
-		return true;
+			return other.taskManager == null;
+		} else return taskManager.equals(other.taskManager);
 	}
 
 	@Override

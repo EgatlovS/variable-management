@@ -28,7 +28,7 @@ public class TaskMock implements Task {
 	private boolean isSuspended;
 	private String formKey;
 	private String tenantId;
-	public String caseDefinitionId;
+	private String caseDefinitionId;
 
 	@Override
 	public String getId() {

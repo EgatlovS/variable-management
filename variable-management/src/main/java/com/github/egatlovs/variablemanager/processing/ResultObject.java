@@ -18,6 +18,7 @@ import com.github.egatlovs.variablemanager.exceptions.ResultObjectException;
  * 
  * @author egatlovs
  */
+@SuppressWarnings("JavaDoc")
 public class ResultObject {
 
 	/**

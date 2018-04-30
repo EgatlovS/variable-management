@@ -27,10 +27,13 @@ public class FieldName {
 		String name;
 		if (executionField == null) {
 			name = field.getName();
-		} else if (executionField.prefix() == null || executionField.prefix().isEmpty()) {
-			name = executionField.name();
 		} else {
-			name = executionField.prefix() + "_" + executionField.name();
+			executionField.prefix();
+			if (executionField.prefix().isEmpty()) {
+				name = executionField.name();
+			} else {
+				name = executionField.prefix() + "_" + executionField.name();
+			}
 		}
 		return name;
 	}
@@ -50,10 +53,13 @@ public class FieldName {
 		String name;
 		if (executionField == null) {
 			name = clazz.getSimpleName();
-		} else if (executionField.prefix() == null || executionField.prefix().isEmpty()) {
-			name = executionField.name();
 		} else {
-			name = executionField.prefix() + "_" + executionField.name();
+			executionField.prefix();
+			if (executionField.prefix().isEmpty()) {
+				name = executionField.name();
+			} else {
+				name = executionField.prefix() + "_" + executionField.name();
+			}
 		}
 		return name;
 	}
@@ -72,10 +78,13 @@ public class FieldName {
 		String name;
 		if (executionField == null) {
 			name = o.getClass().getSimpleName();
-		} else if (executionField.prefix() == null || executionField.prefix().isEmpty()) {
-			name = executionField.name();
 		} else {
-			name = executionField.prefix() + "_" + executionField.name();
+			executionField.prefix();
+			if (executionField.prefix().isEmpty()) {
+				name = executionField.name();
+			} else {
+				name = executionField.prefix() + "_" + executionField.name();
+			}
 		}
 		return name;
 	}

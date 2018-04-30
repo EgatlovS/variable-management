@@ -21,10 +21,10 @@ public class CreateVariablesTask implements JavaDelegate {
 	private RuntimeManager manager;
 
 	@Override
-	public void execute(DelegateExecution execution) throws Exception {
-		List<String> list = new ArrayList<String>();
+	public void execute(DelegateExecution execution) {
+		List<String> list = new ArrayList<>();
 		list.add("stringOne");
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<>();
 
 		MyVariables vars = new MyVariables("stringValue", 2, list, map);
 		manager.setVariable(vars, execution.getProcessInstanceId());

@@ -7,7 +7,7 @@ import com.github.egatlovs.variablemanager.annotations.ExecutionField;
 import com.github.egatlovs.variablemanager.annotations.Ignore;
 import com.github.egatlovs.variablemanager.annotations.StoreStrategies;
 
-@Execution(storeStartegy = StoreStrategies.JSON)
+@Execution(storeStrategy = StoreStrategies.JSON)
 public class VariableProcessorMockJsonAnnotated {
 
 	private String someString = "string";

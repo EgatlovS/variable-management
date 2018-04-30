@@ -35,7 +35,7 @@ import com.github.egatlovs.variablemanager.exceptions.VariableProcessingExceptio
 public class VariableProcessor {
 
 	/**
-	 * Processe takes an Object and extracts each variable declared in it.</br>
+	 * Process takes an Object and extracts each variable declared in it.</br>
 	 * After extracting the variables and their names a Map of them is
 	 * returned.</br>
 	 * </br>
@@ -54,6 +54,7 @@ public class VariableProcessor {
 	 *            - The Object being processed
 	 * @return A Map of variables and their names
 	 */
+	@SuppressWarnings("JavaDoc")
 	public Map<String, Object> process(Object processable) {
 		Map<String, Object> processedVariables;
 		ExecutionAnnotation execution = new ExecutionAnnotation(processable);

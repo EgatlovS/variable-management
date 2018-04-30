@@ -24,7 +24,7 @@ public interface RuntimeVariableManager {
 	 * @param executionId
 	 *            - The id of the execution to be used
 	 */
-	void setVariable(Object value, String executionid);
+	void setVariable(Object value, String executionId);
 
 	/**
 	 * Sets a Variable Locally to the Execution. </br>
@@ -46,7 +46,7 @@ public interface RuntimeVariableManager {
 	 * @param executionId
 	 *            - The id of the execution to be used
 	 */
-	void setVariableLocal(Object value, String executionid);
+	void setVariableLocal(Object value, String executionId);
 
 	/**
 	 * Retrieves a Variable from the Execution. </br>
@@ -64,7 +64,7 @@ public interface RuntimeVariableManager {
 	 *            - The id of the execution to be used
 	 * @return - The Object of the requested class
 	 */
-	<T> T getVariable(Class<T> clazz, String executionid);
+	<T> T getVariable(Class<T> clazz, String executionId);
 
 	/**
 	 * Retrieves a Variable locally from the Execution. </br>
@@ -82,7 +82,7 @@ public interface RuntimeVariableManager {
 	 *            - The id of the execution to be used
 	 * @return - The Object of the requested class
 	 */
-	<T> T getVariableLocal(Class<T> clazz, String executionid);
+	<T> T getVariableLocal(Class<T> clazz, String executionId);
 
 	/**
 	 * Removes a Variable from the Execution. </br>
@@ -97,7 +97,7 @@ public interface RuntimeVariableManager {
 	 * @param executionId
 	 *            - The id of the execution to be used
 	 */
-	<T> void removeVariables(Class<T> clazz, String executionid);
+	<T> void removeVariables(Class<T> clazz, String executionId);
 
 	/**
 	 * Removes Variables locally from the Execution. </br>
@@ -112,10 +112,10 @@ public interface RuntimeVariableManager {
 	 * @param executionId
 	 *            - The id of the execution to be used
 	 */
-	<T> void removeVariablesLocal(Class<T> clazz, String executionid);
+	<T> void removeVariablesLocal(Class<T> clazz, String executionId);
 
 	/**
-	 * Gives acces to the wrapped runtimeService.
+	 * Gives access to the wrapped runtimeService.
 	 * 
 	 * @return Returns the wrapped runtimeService
 	 */

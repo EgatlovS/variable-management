@@ -115,7 +115,7 @@ public interface TaskVariableManager {
 	<T> void removeVariablesLocal(Class<T> clazz, String taskid);
 
 	/**
-	 * Gives acces to the wrapped taskService.
+	 * Gives access to the wrapped taskService.
 	 * 
 	 * @return Returns the wrapped taskService
 	 */

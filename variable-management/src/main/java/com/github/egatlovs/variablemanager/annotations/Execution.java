@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * <b>Execution</b></br>
  * </br>
  * You can annotate classes with {@code @Execution} to change the default
- * processing of ExecutionEntitys.</br>
+ * processing of ExecutionEntities.</br>
  * If storeFields is set to true (default value) each field will be processed.
  * Otherwise if it's set to false the ProcessingUnit will just handle the Object
  * itself.</br>
@@ -21,7 +21,7 @@ import java.lang.annotation.Target;
  * </br>
  * Default values:</br>
  * storeFields = true</br>
- * storeStartegy = Object</br>
+ * storeStrategy = Object</br>
  * 
  * @author egatlovs
  */
@@ -31,6 +31,6 @@ public @interface Execution {
 
 	boolean storeFields() default true;
 
-	StoreStrategies storeStartegy() default StoreStrategies.OBJECT;
+	StoreStrategies storeStrategy() default StoreStrategies.OBJECT;
 
 }

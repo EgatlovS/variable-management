@@ -20,11 +20,11 @@ import org.camunda.bpm.engine.task.TaskReport;
 import org.camunda.bpm.engine.variable.VariableMap;
 import org.camunda.bpm.engine.variable.value.TypedValue;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "TypeParameterExplicitlyExtendsObject"})
 public class TaskServiceMock implements TaskService {
 
 	private TaskMock task;
-	private DelegateExecution execution;
+	private final DelegateExecution execution;
 
 	public TaskServiceMock(DelegateExecution execution) {
 		this.newTask();
@@ -104,12 +104,12 @@ public class TaskServiceMock implements TaskService {
 
 	@Override
 	public VariableMap getVariablesLocalTyped(String taskId) {
-		return (VariableMap) this.execution.getVariablesLocalTyped();
+		return this.execution.getVariablesLocalTyped();
 	}
 
 	@Override
 	public VariableMap getVariablesLocalTyped(String taskId, boolean deserializeValues) {
-		return (VariableMap) this.execution.getVariablesLocalTyped(deserializeValues);
+		return this.execution.getVariablesLocalTyped(deserializeValues);
 	}
 
 	@Override
@@ -177,6 +177,7 @@ public class TaskServiceMock implements TaskService {
 	// NOT RECOMMENDED
 	// *********************************************
 
+	@SuppressWarnings("DeprecatedIsStillUsed")
 	@Deprecated
 	@Override
 	public Task newTask() {
@@ -292,49 +293,49 @@ public class TaskServiceMock implements TaskService {
 	@Deprecated
 	@Override
 	public void addCandidateUser(String taskId, String userId) {
-		// dont implement
+		// don't implement
 	}
 
 	@Deprecated
 	@Override
 	public void addCandidateGroup(String taskId, String groupId) {
-		// dont implement
+		// don't implement
 	}
 
 	@Deprecated
 	@Override
 	public void addUserIdentityLink(String taskId, String userId, String identityLinkType) {
-		// dont implement
+		// don't implement
 	}
 
 	@Deprecated
 	@Override
 	public void addGroupIdentityLink(String taskId, String groupId, String identityLinkType) {
-		// dont implement
+		// don't implement
 	}
 
 	@Deprecated
 	@Override
 	public void deleteCandidateUser(String taskId, String userId) {
-		// dont implement
+		// don't implement
 	}
 
 	@Deprecated
 	@Override
 	public void deleteCandidateGroup(String taskId, String groupId) {
-		// dont implement
+		// don't implement
 	}
 
 	@Deprecated
 	@Override
 	public void deleteUserIdentityLink(String taskId, String userId, String identityLinkType) {
-		/// dont implement
+		/// don't implement
 	}
 
 	@Deprecated
 	@Override
 	public void deleteGroupIdentityLink(String taskId, String groupId, String identityLinkType) {
-		// dont implement
+		// don't implement
 	}
 
 	@Deprecated
@@ -346,55 +347,55 @@ public class TaskServiceMock implements TaskService {
 	@Deprecated
 	@Override
 	public TaskQuery createTaskQuery() {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public NativeTaskQuery createNativeTaskQuery() {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public void addComment(String taskId, String processInstanceId, String message) {
-		// dont implement
+		// don't implement
 	}
 
 	@Deprecated
 	@Override
 	public Comment createComment(String taskId, String processInstanceId, String message) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public List<Comment> getTaskComments(String taskId) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public Comment getTaskComment(String taskId, String commentId) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public List<Event> getTaskEvents(String taskId) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public List<Comment> getProcessInstanceComments(String processInstanceId) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
@@ -402,7 +403,7 @@ public class TaskServiceMock implements TaskService {
 	@Override
 	public Attachment createAttachment(String attachmentType, String taskId, String processInstanceId,
 			String attachmentName, String attachmentDescription, InputStream content) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
@@ -410,81 +411,81 @@ public class TaskServiceMock implements TaskService {
 	@Override
 	public Attachment createAttachment(String attachmentType, String taskId, String processInstanceId,
 			String attachmentName, String attachmentDescription, String url) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public void saveAttachment(Attachment attachment) {
-		// dont implement
+		// don't implement
 	}
 
 	@Deprecated
 	@Override
 	public Attachment getAttachment(String attachmentId) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public Attachment getTaskAttachment(String taskId, String attachmentId) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public InputStream getAttachmentContent(String attachmentId) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public InputStream getTaskAttachmentContent(String taskId, String attachmentId) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public List<Attachment> getTaskAttachments(String taskId) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public List<Attachment> getProcessInstanceAttachments(String processInstanceId) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public void deleteAttachment(String attachmentId) {
-		// dont implement
+		// don't implement
 	}
 
 	@Deprecated
 	@Override
 	public void deleteTaskAttachment(String taskId, String attachmentId) {
-		// dont implement
+		// don't implement
 	}
 
 	@Deprecated
 	@Override
 	public List<Task> getSubTasks(String parentTaskId) {
-		// dont implement
+		// don't implement
 		return null;
 	}
 
 	@Deprecated
 	@Override
 	public TaskReport createTaskReport() {
-		// dont implement
+		// don't implement
 		return null;
 	}
 

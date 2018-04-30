@@ -24,7 +24,7 @@ import com.github.egatlovs.variablemanager.annotations.Ignore;
 public class FieldNames {
 
 	/**
-	 * This methog determines names out of a given Class. If the Class is annotated
+	 * This method determines names out of a given Class. If the Class is annotated
 	 * with {@code @Execution} the values of the Annotation will be used to
 	 * determine if the name of the Object or of the Fields of the Object are
 	 * returned. </br>

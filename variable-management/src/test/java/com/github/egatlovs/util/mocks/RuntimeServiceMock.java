@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.egatlovs.util.exceptions.NotImplementedException;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.batch.Batch;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -31,11 +32,9 @@ import org.camunda.bpm.engine.runtime.VariableInstanceQuery;
 import org.camunda.bpm.engine.variable.VariableMap;
 import org.camunda.bpm.engine.variable.value.TypedValue;
 
-import com.github.egatlovs.util.exceptions.NotImplementedExecption;
-
 public class RuntimeServiceMock implements RuntimeService {
 
-	private DelegateExecution execution;
+	private final DelegateExecution execution;
 
 	public RuntimeServiceMock(DelegateExecution execution) {
 		this.execution = execution;
@@ -114,12 +113,12 @@ public class RuntimeServiceMock implements RuntimeService {
 
 	@Override
 	public VariableMap getVariablesLocalTyped(String executionId) {
-		return (VariableMap) this.execution.getVariablesLocalTyped();
+		return this.execution.getVariablesLocalTyped();
 	}
 
 	@Override
 	public VariableMap getVariablesLocalTyped(String executionId, boolean deserializeValues) {
-		return (VariableMap) this.execution.getVariablesLocalTyped(deserializeValues);
+		return this.execution.getVariablesLocalTyped(deserializeValues);
 	}
 
 	@Override
@@ -189,417 +188,417 @@ public class RuntimeServiceMock implements RuntimeService {
 
 	@Override
 	public ProcessInstance startProcessInstanceByKey(String processDefinitionKey) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByKey(String processDefinitionKey, String businessKey) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByKey(String processDefinitionKey, String businessKey,
 			String caseInstanceId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByKey(String processDefinitionKey, Map<String, Object> variables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByKey(String processDefinitionKey, String businessKey,
 			Map<String, Object> variables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByKey(String processDefinitionKey, String businessKey,
 			String caseInstanceId, Map<String, Object> variables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceById(String processDefinitionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceById(String processDefinitionId, String businessKey) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceById(String processDefinitionId, String businessKey,
 			String caseInstanceId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceById(String processDefinitionId, Map<String, Object> variables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceById(String processDefinitionId, String businessKey,
 			Map<String, Object> variables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceById(String processDefinitionId, String businessKey,
 			String caseInstanceId, Map<String, Object> variables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByMessage(String messageName) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByMessage(String messageName, String businessKey) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByMessage(String messageName, Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByMessage(String messageName, String businessKey,
 			Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByMessageAndProcessDefinitionId(String messageName,
 			String processDefinitionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByMessageAndProcessDefinitionId(String messageName,
 			String processDefinitionId, String businessKey) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByMessageAndProcessDefinitionId(String messageName,
 			String processDefinitionId, Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstance startProcessInstanceByMessageAndProcessDefinitionId(String messageName,
 			String processDefinitionId, String businessKey, Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void deleteProcessInstance(String processInstanceId, String deleteReason) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public Batch deleteProcessInstancesAsync(List<String> processInstanceIds, ProcessInstanceQuery processInstanceQuery,
 			String deleteReason) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Batch deleteProcessInstancesAsync(List<String> processInstanceIds, ProcessInstanceQuery processInstanceQuery,
 			String deleteReason, boolean skipCustomListeners) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Batch deleteProcessInstancesAsync(List<String> processInstanceIds, ProcessInstanceQuery processInstanceQuery,
 			String deleteReason, boolean skipCustomListeners, boolean skipSubprocesses) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Batch deleteProcessInstancesAsync(ProcessInstanceQuery processInstanceQuery, String deleteReason) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Batch deleteProcessInstancesAsync(List<String> processInstanceIds, String deleteReason) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void deleteProcessInstance(String processInstanceId, String deleteReason, boolean skipCustomListeners) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void deleteProcessInstance(String processInstanceId, String deleteReason, boolean skipCustomListeners,
 			boolean externallyTerminated) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void deleteProcessInstances(List<String> processInstanceIds, String deleteReason,
 			boolean skipCustomListeners, boolean externallyTerminated) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void deleteProcessInstances(List<String> processInstanceIds, String deleteReason,
 			boolean skipCustomListeners, boolean externallyTerminated, boolean skipSubprocesses) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void deleteProcessInstance(String processInstanceId, String deleteReason, boolean skipCustomListeners,
 			boolean externallyTerminated, boolean skipIoMappings) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void deleteProcessInstance(String processInstanceId, String deleteReason, boolean skipCustomListeners,
 			boolean externallyTerminated, boolean skipIoMappings, boolean skipSubprocesses) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public List<String> getActiveActivityIds(String executionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ActivityInstance getActivityInstance(String processInstanceId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void signal(String executionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void signal(String executionId, String signalName, Object signalData, Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void signal(String executionId, Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ExecutionQuery createExecutionQuery() {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public NativeExecutionQuery createNativeExecutionQuery() {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstanceQuery createProcessInstanceQuery() {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public NativeProcessInstanceQuery createNativeProcessInstanceQuery() {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public IncidentQuery createIncidentQuery() {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public EventSubscriptionQuery createEventSubscriptionQuery() {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public VariableInstanceQuery createVariableInstanceQuery() {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void suspendProcessInstanceById(String processInstanceId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void suspendProcessInstanceByProcessDefinitionId(String processDefinitionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void suspendProcessInstanceByProcessDefinitionKey(String processDefinitionKey) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void activateProcessInstanceById(String processInstanceId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void activateProcessInstanceByProcessDefinitionId(String processDefinitionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void activateProcessInstanceByProcessDefinitionKey(String processDefinitionKey) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public UpdateProcessInstanceSuspensionStateSelectBuilder updateProcessInstanceSuspensionState() {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void signalEventReceived(String signalName) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void signalEventReceived(String signalName, Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void signalEventReceived(String signalName, String executionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void signalEventReceived(String signalName, String executionId, Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public SignalEventReceivedBuilder createSignalEvent(String signalName) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void messageEventReceived(String messageName, String executionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void messageEventReceived(String messageName, String executionId, Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public MessageCorrelationBuilder createMessageCorrelation(String messageName) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void correlateMessage(String messageName) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void correlateMessage(String messageName, String businessKey) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void correlateMessage(String messageName, Map<String, Object> correlationKeys) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void correlateMessage(String messageName, String businessKey, Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void correlateMessage(String messageName, Map<String, Object> correlationKeys,
 			Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 
 	@Override
 	public void correlateMessage(String messageName, String businessKey, Map<String, Object> correlationKeys,
 			Map<String, Object> processVariables) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstanceModificationBuilder createProcessInstanceModification(String processInstanceId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstantiationBuilder createProcessInstanceById(String processDefinitionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ProcessInstantiationBuilder createProcessInstanceByKey(String processDefinitionKey) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public MigrationPlanBuilder createMigrationPlan(String sourceProcessDefinitionId,
 			String targetProcessDefinitionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public MigrationPlanExecutionBuilder newMigration(MigrationPlan migrationPlan) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ModificationBuilder createModification(String processDefinitionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public RestartProcessInstanceBuilder restartProcessInstances(String processDefinitionId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Incident createIncident(String incidentType, String executionId, String configuration) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Incident createIncident(String incidentType, String executionId, String configuration, String message) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void resolveIncident(String incidentId) {
-		throw new NotImplementedExecption();
+		throw new NotImplementedException();
 
 	}
 

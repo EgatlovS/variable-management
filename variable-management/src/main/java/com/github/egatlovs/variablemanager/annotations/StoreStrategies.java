@@ -1,7 +1,7 @@
 package com.github.egatlovs.variablemanager.annotations;
 
 /**
- * <b>StoreStartegies</b></br>
+ * <b>StoreStrategies</b></br>
  * </br>
  * {@code StoreStrategies} defines two values:</br>
  * <b> {@code StoreStrategies.OBJECT}</b> and
@@ -13,6 +13,6 @@ package com.github.egatlovs.variablemanager.annotations;
  */
 public enum StoreStrategies {
 
-	OBJECT, JSON;
+	OBJECT, JSON
 
 }

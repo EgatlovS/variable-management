@@ -24,7 +24,7 @@ public class ExceptionHandlerTest {
 			ExceptionHandler.createResultObjectException(new IllegalArgumentException(), String.class);
 		} catch (Exception e) {
 			Assertions.assertThat(e).isInstanceOf(ResultObjectException.class);
-			Assertions.assertThat(e).hasMessageStartingWith("Tryed to instantiate");
+			Assertions.assertThat(e).hasMessageStartingWith("Tried to instantiate");
 		}
 		try {
 			ExceptionHandler.createResultObjectException(new InvocationTargetException(new Exception()), String.class);
@@ -36,19 +36,19 @@ public class ExceptionHandlerTest {
 			ExceptionHandler.createResultObjectException(new IllegalAccessException(), String.class);
 		} catch (Exception e) {
 			Assertions.assertThat(e).isInstanceOf(ResultObjectException.class);
-			Assertions.assertThat(e).hasMessageStartingWith("Tryed to instantiate");
+			Assertions.assertThat(e).hasMessageStartingWith("Tried to instantiate");
 		}
 		try {
 			ExceptionHandler.createResultObjectException(new NoSuchMethodException(), String.class);
 		} catch (Exception e) {
 			Assertions.assertThat(e).isInstanceOf(ResultObjectException.class);
-			Assertions.assertThat(e).hasMessageStartingWith("Tryed to instantiate");
+			Assertions.assertThat(e).hasMessageStartingWith("Tried to instantiate");
 		}
 		try {
 			ExceptionHandler.createResultObjectException(new SecurityException(), String.class);
 		} catch (Exception e) {
 			Assertions.assertThat(e).isInstanceOf(ResultObjectException.class);
-			Assertions.assertThat(e).hasMessageStartingWith("Tryed to instantiate");
+			Assertions.assertThat(e).hasMessageStartingWith("Tried to instantiate");
 		}
 		try {
 			ExceptionHandler.createResultObjectException(new Exception(), String.class);
@@ -62,21 +62,21 @@ public class ExceptionHandlerTest {
 	public void Should_Create_ResultObjectException_By_Field_And_Object() {
 		try {
 			ExceptionHandler.createResultObjectException(new IllegalAccessException(),
-					String.class.getDeclaredFields()[0], new String());
+					String.class.getDeclaredFields()[0], "");
 		} catch (Exception e) {
 			Assertions.assertThat(e).isInstanceOf(ResultObjectException.class);
-			Assertions.assertThat(e).hasMessageStartingWith("Tryed to access field value but was not accessible");
+			Assertions.assertThat(e).hasMessageStartingWith("Tried to access field value but was not accessible");
 		}
 		try {
 			ExceptionHandler.createResultObjectException(new IllegalArgumentException(),
-					String.class.getDeclaredFields()[0], new String());
+					String.class.getDeclaredFields()[0], "");
 		} catch (Exception e) {
 			Assertions.assertThat(e).isInstanceOf(ResultObjectException.class);
-			Assertions.assertThat(e).hasMessageStartingWith("Tryed to acces field value on wrong object");
+			Assertions.assertThat(e).hasMessageStartingWith("Tried to access field value on wrong object");
 		}
 		try {
 			ExceptionHandler.createResultObjectException(new Exception(), String.class.getDeclaredFields()[0],
-					new String());
+					"");
 		} catch (Exception e) {
 			Assertions.assertThat(e).isInstanceOf(ResultObjectException.class);
 			Assertions.assertThat(e).hasMessageStartingWith("Unknown");
@@ -87,21 +87,21 @@ public class ExceptionHandlerTest {
 	public void Should_Create_VariableProcessingException() {
 		try {
 			ExceptionHandler.createVariableProcessingException(new IllegalAccessException(),
-					String.class.getDeclaredFields()[0], new String());
+					String.class.getDeclaredFields()[0], "");
 		} catch (Exception e) {
 			Assertions.assertThat(e).isInstanceOf(VariableProcessingException.class);
-			Assertions.assertThat(e).hasMessageStartingWith("Tryed to access field value but was not accessible");
+			Assertions.assertThat(e).hasMessageStartingWith("Tried to access field value but was not accessible");
 		}
 		try {
 			ExceptionHandler.createVariableProcessingException(new IllegalArgumentException(),
-					String.class.getDeclaredFields()[0], new String());
+					String.class.getDeclaredFields()[0], "");
 		} catch (Exception e) {
 			Assertions.assertThat(e).isInstanceOf(VariableProcessingException.class);
-			Assertions.assertThat(e).hasMessageStartingWith("Tryed to acces field value on wrong object");
+			Assertions.assertThat(e).hasMessageStartingWith("Tried to access field value on wrong object");
 		}
 		try {
 			ExceptionHandler.createVariableProcessingException(new Exception(), String.class.getDeclaredFields()[0],
-					new String());
+					"");
 		} catch (Exception e) {
 			Assertions.assertThat(e).isInstanceOf(VariableProcessingException.class);
 			Assertions.assertThat(e).hasMessageStartingWith("Unknown");

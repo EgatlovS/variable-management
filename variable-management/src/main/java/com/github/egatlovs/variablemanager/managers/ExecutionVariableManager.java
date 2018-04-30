@@ -103,7 +103,7 @@ public interface ExecutionVariableManager {
 	<T> void removeVariablesLocal(Class<T> clazz);
 
 	/**
-	 * Gives acces to the wrapped execution.
+	 * Gives access to the wrapped execution.
 	 * 
 	 * @return Returns the wrapped execution
 	 */

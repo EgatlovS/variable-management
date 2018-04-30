@@ -30,14 +30,14 @@ public class ExecutionAnnotation {
 		if (o instanceof Class) {
 			this.execution = (Execution) ((Class) o).getAnnotation(Execution.class);
 		} else if (o instanceof Field) {
-			this.execution = (Execution) ((Field) o).getAnnotation(Execution.class);
+			this.execution = ((Field) o).getAnnotation(Execution.class);
 		} else {
 			this.execution = o.getClass().getAnnotation(Execution.class);
 		}
 	}
 
 	/**
-	 * Constructor retieving the annotation itself
+	 * Constructor retrieving the annotation itself
 	 * 
 	 * @param execution
 	 *            - The Annotation {@code Execution} to be used
@@ -55,7 +55,7 @@ public class ExecutionAnnotation {
 		if (execution == null) {
 			return StoreStrategies.OBJECT;
 		}
-		return execution.storeStartegy();
+		return execution.storeStrategy();
 	}
 
 	/**
