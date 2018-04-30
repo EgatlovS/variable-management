@@ -9,12 +9,12 @@ I personally recognized that executing tasks developing and modelling a process 
 
 ## Content
 
-- [The reason why](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#the-reason-why)
-- [Introduction](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#introduction)
-    - [Managers](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#managers)
-    - [Annotations](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#annotations)
-- [Examples](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#examples)
-- [Epilogue](https://github.com/EgatlovS/variable-management/tree/release/1.0.0#epilogue)
+- [The reason why](#the-reason-why)
+- [Introduction](#introduction)
+    - [Managers](#managers)
+    - [Annotations](#annotations)
+- [Examples](#examples)
+- [Epilogue](#epilogue)
 
 
 ## The reason why
@@ -24,12 +24,17 @@ Everyone of us nows the TwitterProcess example of camunda. Inside the whole proc
 Heres a little example of that:
 
 ```java
-UPDATE CODE SAMPLE
-public class MyExecutable implements JavaDelegate(){
-execute(){
-   String message = (String)  execution.getVariable(message);
-   twitterService.tweet(message);
-}
+public class MyDelegate implements JavaDelegate {
+
+    @Inject
+    TwitterService twitterService;
+
+    @Override
+    public void execute(DelegateExecution execution) throws Exception {
+        String message = (String) execution.getVariable("message");
+        twitterService.tweet(message);
+    }
+
 }
 ```
 
@@ -42,9 +47,12 @@ Lets think about a more complex example where you need some form of list and act
 Pretty easy:
 
 ```java
-UPDATE CODE SAMPLE
-if(array.size() < 5)
-throw new Exception ()
+    public void execute(DelegateExecution execution) throws Exception {
+        List<String> informations = someService.getInformation();
+        if (informations.size() < 5) {
+            throw new Exception("failed");
+        }
+    }
 ```
 
 Ok now we have that. Lets think about some sort of service where you get this array from. Ofcourse you can never trust anyone.. thats why you probably want to nullcheck the array.
@@ -52,11 +60,13 @@ Ok now we have that. Lets think about some sort of service where you get this ar
 So youre code looks like that:
 
 ```java
-UPDATE CODE SAMPLE
-if(array != null || array.size() < 5)
-throw new Exception ()
-else 
-execution.setVariable("array", array)
+    public void execute(DelegateExecution execution) throws Exception {
+        List<String> informations = someService.getInformation();
+        if (informations == null || informations.size() < 5) {
+            throw new Exception("failed");
+        }
+        execution.setVariable("informations", informations);
+    }
 ```
 
 Note that i added a line to save the array inside the execution. Thats also my next concern. You always access and write variables based of a String representing the variable. Think about a process where you want to access a single variable in various different tasks. Thats the point where most developers think about some sort of enum where you store the names of variables and retrieve them elsewhere to access the variable. Thats to ensure, that if someone renames them, everything else will still be functional.
@@ -106,13 +116,34 @@ The Ignore annotation is used to Mark variables to be ignored from the manager w
 Instead of:
 
 ```java
- code sample
+    public void execute(DelegateExecution execution) throws Exception {
+        String name1 = (String) execution.getVariable("name1");
+        String name2 = (String) execution.getVariable("name2");
+        String name3 = (String) execution.getVariable("name3");
+        String name4 = (String) execution.getVariable("name4");
+        String name5 = (String) execution.getVariable("name5");
+        String name6 = (String) execution.getVariable("name6");
+        String name7 = (String) execution.getVariable("name7");
+        String name8 = (String) execution.getVariable("name8");
+        String name9 = (String) execution.getVariable("name9");
+     
+        someObject.setName1(name1);
+        // Map Everything to some Object...
+        
+        // do some logic
+    }
 ```
 
 You can just write this:
 
 ```java
- code sample
+    @Inject
+    private ExecutionManager manager;
+    
+    public void execute(DelegateExecution execution) throws Exception {
+       SomeObject someObject = manager.getVariable(SomeObject.class);
+       //do some logic
+    }
 ```
 
 ## Epilogue
