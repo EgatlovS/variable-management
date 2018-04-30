@@ -14,6 +14,7 @@ I personally recognized that executing tasks developing and modelling a process 
     - [Managers](#managers)
     - [Annotations](#annotations)
 - [Examples](#examples)
+- [Future Plans](#future-plans)
 - [Epilogue](#epilogue)
 
 
@@ -145,6 +146,19 @@ You can just write this:
        //do some logic
     }
 ```
+
+## Future Plans
+
+Here are some plans for the next weeks:
+ - Work on Project "Typed Value Support"
+ - Release Version 2.0.0 of this framework
+ 
+ > **Why Release 2.0.0?**
+ > As of the Typed Value Support rethinking some Annotations
+ > and how they influence the Execution Entities was necessary to
+ > give everyone a better experience.
+ > After release 2 the next features should not break the API and the whole
+ > project should be backward compatible.
 
 ## Epilogue
 
