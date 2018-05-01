@@ -41,7 +41,7 @@ public class ResultObject {
 		}
 
 		Field[] fields = clazz.getDeclaredFields();
-		com.github.egatlovs.variablemanager.processing.FieldNameExtractor fieldName = new com.github.egatlovs.variablemanager.processing.FieldNameExtractor();
+		FieldNameExtractor fieldName = new FieldNameExtractor();
 		for (Field field : fields) {
 			String key;
 			if (field.isAnnotationPresent(FieldName.class)) {

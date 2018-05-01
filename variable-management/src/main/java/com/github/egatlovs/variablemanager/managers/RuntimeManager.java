@@ -7,11 +7,11 @@ import java.util.Set;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
+import com.github.egatlovs.variablemanager.processing.ProcessingUnit;
 import org.camunda.bpm.engine.RuntimeService;
 
 import com.github.egatlovs.variablemanager.processing.FieldNames;
 import com.github.egatlovs.variablemanager.processing.ResultObject;
-import com.github.egatlovs.variablemanager.processing.VariableProcessor;
 import com.github.egatlovs.variablemanager.validation.VariableValidator;
 
 /**
@@ -50,17 +50,17 @@ public class RuntimeManager implements RuntimeVariableManager {
 	@Override
 	public void setVariable(Object value, String executionid) {
 		VariableValidator.validate(value);
-		VariableProcessor processor = new VariableProcessor();
-		Map<String, Object> processedVariables = processor.process(value);
-		this.runtimeService.setVariables(executionid, processedVariables);
+		ProcessingUnit punit = new ProcessingUnit();
+		Map<String, Object> variables = punit.getVariables(value);
+		this.runtimeService.setVariables(executionid, variables);
 	}
 
 	@Override
 	public void setVariableLocal(Object value, String executionid) {
 		VariableValidator.validate(value);
-		VariableProcessor processor = new VariableProcessor();
-		Map<String, Object> processedVariables = processor.process(value);
-		this.runtimeService.setVariablesLocal(executionid, processedVariables);
+		ProcessingUnit punit = new ProcessingUnit();
+		Map<String, Object> variables = punit.getVariables(value);
+		this.runtimeService.setVariablesLocal(executionid, variables);
 	}
 
 	@Override

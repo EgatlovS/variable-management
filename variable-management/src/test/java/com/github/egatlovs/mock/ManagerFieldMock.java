@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 
 import com.github.egatlovs.variablemanager.annotations.FieldName;
 import com.github.egatlovs.variablemanager.annotations.Ignore;
+import com.github.egatlovs.variablemanager.annotations.ObjectValue;
 
+@ObjectValue(storeFields = true)
 public class ManagerFieldMock {
 
 	private String someString = "string";

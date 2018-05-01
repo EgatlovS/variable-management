@@ -7,11 +7,11 @@ import java.util.Set;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
+import com.github.egatlovs.variablemanager.processing.ProcessingUnit;
 import org.camunda.bpm.engine.TaskService;
 
 import com.github.egatlovs.variablemanager.processing.FieldNames;
 import com.github.egatlovs.variablemanager.processing.ResultObject;
-import com.github.egatlovs.variablemanager.processing.VariableProcessor;
 import com.github.egatlovs.variablemanager.validation.VariableValidator;
 
 /**
@@ -50,17 +50,17 @@ public class TaskManager implements TaskVariableManager {
 	@Override
 	public void setVariable(Object value, String taskid) {
 		VariableValidator.validate(value);
-		VariableProcessor processor = new VariableProcessor();
-		Map<String, Object> processedVariables = processor.process(value);
-		this.taskService.setVariables(taskid, processedVariables);
+		ProcessingUnit punit = new ProcessingUnit();
+		Map<String, Object> variables = punit.getVariables(value);
+		this.taskService.setVariables(taskid, variables);
 	}
 
 	@Override
 	public void setVariableLocal(Object value, String taskid) {
 		VariableValidator.validate(value);
-		VariableProcessor processor = new VariableProcessor();
-		Map<String, Object> processedVariables = processor.process(value);
-		this.taskService.setVariablesLocal(taskid, processedVariables);
+		ProcessingUnit punit = new ProcessingUnit();
+		Map<String, Object> variables = punit.getVariables(value);
+		this.taskService.setVariables(taskid, variables);
 	}
 
 	@Override

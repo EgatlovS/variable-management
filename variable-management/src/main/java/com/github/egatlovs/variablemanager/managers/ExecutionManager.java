@@ -7,11 +7,11 @@ import java.util.Set;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
+import com.github.egatlovs.variablemanager.processing.ProcessingUnit;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
 import com.github.egatlovs.variablemanager.processing.FieldNames;
 import com.github.egatlovs.variablemanager.processing.ResultObject;
-import com.github.egatlovs.variablemanager.processing.VariableProcessor;
 import com.github.egatlovs.variablemanager.validation.VariableValidator;
 
 /**
@@ -51,17 +51,17 @@ public class ExecutionManager implements ExecutionVariableManager {
 	@Override
 	public void setVariable(Object value) {
 		VariableValidator.validate(value);
-		VariableProcessor processor = new VariableProcessor();
-		Map<String, Object> processedVariables = processor.process(value);
-		this.execution.setVariables(processedVariables);
+		ProcessingUnit punit = new ProcessingUnit();
+		Map<String, Object> variables = punit.getVariables(value);
+		this.execution.setVariables(variables);
 	}
 
 	@Override
 	public void setVariableLocal(Object value) {
 		VariableValidator.validate(value);
-		VariableProcessor processor = new VariableProcessor();
-		Map<String, Object> processedVariables = processor.process(value);
-		this.execution.setVariablesLocal(processedVariables);
+		ProcessingUnit punit = new ProcessingUnit();
+		Map<String, Object> variables = punit.getVariables(value);
+		this.execution.setVariables(variables);
 	}
 
 	@Override
