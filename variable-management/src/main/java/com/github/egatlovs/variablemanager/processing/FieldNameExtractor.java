@@ -2,7 +2,7 @@ package com.github.egatlovs.variablemanager.processing;
 
 import java.lang.reflect.Field;
 
-import com.github.egatlovs.variablemanager.annotations.ExecutionField;
+import com.github.egatlovs.variablemanager.annotations.FieldName;
 
 /**
  * <b>FieldName</b></br>
@@ -11,11 +11,11 @@ import com.github.egatlovs.variablemanager.annotations.ExecutionField;
  * 
  * @author egatlovs
  */
-public class FieldName {
+public class FieldNameExtractor {
 
 	/**
 	 * Returns the name of the given Field. If the Field is annotated with
-	 * ExecutionField the values will be recognized and used to provide the right
+	 * com.github.egatlovs.variablemanager.annotations.FieldName the values will be recognized and used to provide the right
 	 * name.
 	 * 
 	 * @param field
@@ -23,7 +23,7 @@ public class FieldName {
 	 * @return The name of the given field
 	 */
 	public String getFrom(Field field) {
-		ExecutionField executionField = field.getAnnotation(ExecutionField.class);
+		com.github.egatlovs.variablemanager.annotations.FieldName executionField = field.getAnnotation(com.github.egatlovs.variablemanager.annotations.FieldName.class);
 		String name;
 		if (executionField == null) {
 			name = field.getName();
@@ -40,7 +40,7 @@ public class FieldName {
 
 	/**
 	 * Returns the name of the given Class. If the Class is annotated with
-	 * ExecutionField the values will be recognized and used to provide the right
+	 * com.github.egatlovs.variablemanager.annotations.FieldName the values will be recognized and used to provide the right
 	 * name.
 	 * 
 	 * @param clazz
@@ -49,7 +49,7 @@ public class FieldName {
 	 */
 	public String getFrom(@SuppressWarnings("rawtypes") Class clazz) {
 		@SuppressWarnings("unchecked")
-		ExecutionField executionField = (ExecutionField) clazz.getAnnotation(ExecutionField.class);
+		com.github.egatlovs.variablemanager.annotations.FieldName executionField = (com.github.egatlovs.variablemanager.annotations.FieldName) clazz.getAnnotation(com.github.egatlovs.variablemanager.annotations.FieldName.class);
 		String name;
 		if (executionField == null) {
 			name = clazz.getSimpleName();
@@ -66,7 +66,7 @@ public class FieldName {
 
 	/**
 	 * Returns the name of the given Object. If the Object is annotated with
-	 * ExecutionField the values will be recognized and used to provide the right
+	 * com.github.egatlovs.variablemanager.annotations.FieldName the values will be recognized and used to provide the right
 	 * name.
 	 * 
 	 * @param o
@@ -74,7 +74,7 @@ public class FieldName {
 	 * @return The name of the given Object
 	 */
 	public String getFrom(Object o) {
-		ExecutionField executionField = o.getClass().getAnnotation(ExecutionField.class);
+		com.github.egatlovs.variablemanager.annotations.FieldName executionField = o.getClass().getAnnotation(com.github.egatlovs.variablemanager.annotations.FieldName.class);
 		String name;
 		if (executionField == null) {
 			name = o.getClass().getSimpleName();
