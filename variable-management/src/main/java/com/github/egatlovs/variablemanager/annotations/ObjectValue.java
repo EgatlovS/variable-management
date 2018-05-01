@@ -9,6 +9,7 @@ import java.util.Map;
  */
 public @interface ObjectValue {
 
+    boolean storeField() default false;
     SerializationDataFormats serializationFormat() default SerializationDataFormats.JAVA;
     String customSerializationFormat() default "";
 
