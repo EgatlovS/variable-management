@@ -1,8 +1,8 @@
 package com.github.egatlovs.mock;
 
-import com.github.egatlovs.variablemanager.annotations.ExecutionField;
+import com.github.egatlovs.variablemanager.annotations.FieldName;
 
-@ExecutionField(name = "name")
+@FieldName(name = "name")
 public class ExecutionFieldAnnotationMockWithoutPrefixAnnotation {
 
 }

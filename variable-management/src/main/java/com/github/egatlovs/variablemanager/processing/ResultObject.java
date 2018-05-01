@@ -3,7 +3,7 @@ package com.github.egatlovs.variablemanager.processing;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-import com.github.egatlovs.variablemanager.annotations.ExecutionField;
+import com.github.egatlovs.variablemanager.annotations.FieldName;
 import com.github.egatlovs.variablemanager.exceptions.ExceptionHandler;
 import com.github.egatlovs.variablemanager.exceptions.ResultObjectException;
 
@@ -41,10 +41,10 @@ public class ResultObject {
 		}
 
 		Field[] fields = clazz.getDeclaredFields();
-		FieldName fieldName = new FieldName();
+		com.github.egatlovs.variablemanager.processing.FieldNameExtractor fieldName = new com.github.egatlovs.variablemanager.processing.FieldNameExtractor();
 		for (Field field : fields) {
 			String key;
-			if (field.isAnnotationPresent(ExecutionField.class)) {
+			if (field.isAnnotationPresent(FieldName.class)) {
 				key = fieldName.getFrom(field);
 			} else {
 				key = field.getName();

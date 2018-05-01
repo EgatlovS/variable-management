@@ -68,7 +68,7 @@ public class VariableProcessor {
 
 	private Map<String, Object> getObjectVariable(Object processable, ExecutionAnnotation execution) {
 		Map<String, Object> processedVariables = new HashMap<>();
-		FieldName fieldName = new FieldName();
+		FieldNameExtractor fieldName = new FieldNameExtractor();
 		String objectName = fieldName.getFrom(processable);
 		if (execution.getStoreStrategy().equals(StoreStrategies.JSON)) {
 			processedVariables.put(objectName,
@@ -82,7 +82,7 @@ public class VariableProcessor {
 	private Map<String, Object> getVariablesFromField(Object processable, ExecutionAnnotation execution) {
 		Map<String, Object> processedVariables = new HashMap<>();
 		Field[] fields = processable.getClass().getDeclaredFields();
-		FieldName fieldName = new FieldName();
+		FieldNameExtractor fieldName = new FieldNameExtractor();
 		for (Field field : fields) {
 			if (!field.isSynthetic() && !field.isAnnotationPresent(Ignore.class)) {
 				if (!field.isAccessible()) {

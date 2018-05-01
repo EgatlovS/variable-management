@@ -1,5 +1,9 @@
 package com.github.egatlovs.variablemanager.annotations;
 
+import org.camunda.bpm.engine.variable.Variables;
+import org.camunda.bpm.engine.variable.type.ValueType;
+import org.camunda.bpm.engine.variable.value.TypedValue;
+import org.camunda.bpm.engine.variable.Variables.SerializationDataFormats;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -8,6 +12,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
+ * TODO edit documentation
  * <b>ExecutionField</b></br>
  * </br>
  * You can annotate fields and classes with {@code @ExecutionField} to set a
@@ -37,9 +42,9 @@ import java.lang.annotation.Target;
  */
 @Retention(RUNTIME)
 @Target({ TYPE, FIELD })
-public @interface ExecutionField {
+public @interface FieldName {
 
-	String name();
+	String name() default "";
 
 	String prefix() default "";
 

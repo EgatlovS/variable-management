@@ -11,6 +11,7 @@ package com.github.egatlovs.variablemanager.annotations;
  * 
  * @author egatlovs
  */
+// TODO remove cause not needed
 public enum StoreStrategies {
 
 	OBJECT, JSON

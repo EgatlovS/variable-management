@@ -27,6 +27,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RUNTIME)
 @Target(TYPE)
+@Deprecated // TODO remove from sources -> not needed anymore
 public @interface Execution {
 
 	boolean storeFields() default true;

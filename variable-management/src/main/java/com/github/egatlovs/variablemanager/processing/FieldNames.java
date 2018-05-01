@@ -50,7 +50,7 @@ public class FieldNames {
 
 	private <T> Set<String> getObjectName(Class<T> clazz) {
 		Set<String> names = new HashSet<>();
-		FieldName fieldName = new FieldName();
+		FieldNameExtractor fieldName = new FieldNameExtractor();
 		names.add(fieldName.getFrom(clazz));
 		return names;
 	}
@@ -58,7 +58,7 @@ public class FieldNames {
 	private <T> Set<String> getNamesFromFields(Class<T> clazz) {
 		Set<String> names = new HashSet<>();
 		Field[] fields = clazz.getDeclaredFields();
-		FieldName fieldName = new FieldName();
+		FieldNameExtractor fieldName = new FieldNameExtractor();
 		for (Field field : fields) {
 			if (!field.isSynthetic() && !field.isAnnotationPresent(Ignore.class)) {
 				names.add(fieldName.getFrom(field));
