@@ -1,13 +1,13 @@
 package com.github.egatlovs.mock;
 
-import java.math.BigDecimal;
-
 import com.github.egatlovs.variablemanager.annotations.FieldName;
 import com.github.egatlovs.variablemanager.annotations.Ignore;
 import com.github.egatlovs.variablemanager.annotations.ObjectValue;
 
-@ObjectValue(storeFields = true)
-public class ResultObjectMock {
+import java.math.BigDecimal;
+
+@FieldName(name = "resultObject", prefix = "my")
+public class ResultObjectMockWithoutStoreFields {
 
 	private String someString = "string";
 	@FieldName(name = "fieldName", prefix = "fieldPrefix")

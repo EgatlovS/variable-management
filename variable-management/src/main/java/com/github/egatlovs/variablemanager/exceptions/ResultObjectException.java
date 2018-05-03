@@ -16,4 +16,8 @@ public class ResultObjectException extends RuntimeException {
 		super(message, exception);
 	}
 
+	public ResultObjectException(String message) {
+		super(message);
+	}
+
 }
