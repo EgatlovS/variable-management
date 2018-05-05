@@ -46,15 +46,15 @@ public class ProcessingUnit {
                     if (declaredField.isAnnotationPresent(ObjectValue.class)) {
                         ObjectValue nestedObjectValue = declaredField.getAnnotation(ObjectValue.class);
                         if (nestedObjectValue.storeFields()) {
-                            getNestedFields(declaredField.get(obj), variableMap);
+                            Object nestedObject = declaredField.get(obj);
+                            if(nestedObject != null) {
+                                getNestedFields(declaredField.get(obj), variableMap);
+                            }
                         } else {
                             getObjectValue(declaredField.get(obj), variableMap, nestedObjectValue);
                         }
-                        variableMap.putAll(this.getVariables(declaredField));
                     } else if (declaredField.isAnnotationPresent(FileValue.class)) {
-
                         getFileValue(obj, variableMap, declaredField);
-
                     } else {
                         getFieldValue(obj, variableMap, declaredField);
                     }
@@ -74,8 +74,8 @@ public class ProcessingUnit {
     private void getFileValue(Object obj, VariableMap variableMap, Field declaredField) throws IllegalAccessException {
         FileValue fileValue = declaredField.getAnnotation(FileValue.class);
         String name = fieldNameExtractor.getFrom(declaredField);
-        Object fieldValue = declaredField.get(obj);
         FileValueBuilder fileValueBuilder = Variables.fileValue(fileValue.fileName()).encoding(fileValue.encoding()).mimeType(fileValue.mimeType());
+        Object fieldValue = declaredField.get(obj);
         if (fieldValue instanceof File) {
             variableMap.putValue(name, fileValueBuilder.file((File) fieldValue).create());
         } else if (fieldValue instanceof InputStream) {
@@ -88,14 +88,16 @@ public class ProcessingUnit {
     }
 
     private void getObjectValue(Object obj, VariableMap variableMap, ObjectValue objectValue) {
-        String objectName = fieldNameExtractor.getFrom(obj);
-        ObjectValueBuilder objectValueBuilder = Variables.objectValue(obj);
-        if (objectValue == null) {
-            variableMap.putValue(objectName, objectValueBuilder.create());
-        } else if (objectValue.customSerializationFormat().isEmpty()) {
-            variableMap.putValue(objectName, objectValueBuilder.serializationDataFormat(objectValue.serializationFormat()).create());
-        } else {
-            variableMap.putValue(objectName, objectValueBuilder.serializationDataFormat(objectValue.customSerializationFormat()).create());
+        if (obj != null) {
+            String objectName = fieldNameExtractor.getFrom(obj);
+            ObjectValueBuilder objectValueBuilder = Variables.objectValue(obj);
+            if (objectValue == null) {
+                variableMap.putValue(objectName, objectValueBuilder.create());
+            } else if (objectValue.customSerializationFormat().isEmpty()) {
+                variableMap.putValue(objectName, objectValueBuilder.serializationDataFormat(objectValue.serializationFormat()).create());
+            } else {
+                variableMap.putValue(objectName, objectValueBuilder.serializationDataFormat(objectValue.customSerializationFormat()).create());
+            }
         }
     }
 }

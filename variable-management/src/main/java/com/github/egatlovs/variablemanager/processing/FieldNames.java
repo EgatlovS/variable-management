@@ -61,7 +61,7 @@ public class FieldNames {
                 if (declaredField.isAnnotationPresent(ObjectValue.class)) {
                     ObjectValue objectValue = declaredField.getAnnotation(ObjectValue.class);
                     if (objectValue.storeFields()) {
-                        getFieldNames(declaredField.getClass(), names);
+                        getFieldNames(declaredField.getType(), names);
                     } else {
                         names.add(nameExtractor.getFrom(declaredField));
                     }

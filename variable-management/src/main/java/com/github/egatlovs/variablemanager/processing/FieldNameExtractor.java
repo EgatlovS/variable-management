@@ -71,7 +71,7 @@ public class FieldNameExtractor {
      * @return The name of the given Object
      */
     public String getFrom(Object o) {
-        com.github.egatlovs.variablemanager.annotations.FieldName executionField = o.getClass().getAnnotation(com.github.egatlovs.variablemanager.annotations.FieldName.class);
+        FieldName executionField = o.getClass().getAnnotation(FieldName.class);
         String name;
         if (executionField == null) {
             name = o.getClass().getSimpleName();

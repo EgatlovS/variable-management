@@ -66,7 +66,9 @@ public class ResultObject {
                     if (declaredField.isAnnotationPresent(ObjectValue.class)) {
                         ObjectValue objectValue = declaredField.getAnnotation(ObjectValue.class);
                         if (objectValue.storeFields()) {
-                            getFieldValues(declaredField.getClass(), variables, declaredField.get(obj), fieldNameExtractor);
+                            Object nestedObject = instantiateObject(declaredField.getType());
+                            getFieldValues(declaredField.getType(), variables, nestedObject, fieldNameExtractor);
+                            declaredField.set(obj, nestedObject);
                         } else {
                             declaredField.set(obj, variables.get(fieldNameExtractor.getFrom(declaredField)));
                         }

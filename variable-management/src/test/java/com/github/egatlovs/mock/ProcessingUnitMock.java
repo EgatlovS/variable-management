@@ -2,10 +2,12 @@ package com.github.egatlovs.mock;
 
 import com.github.egatlovs.variablemanager.annotations.FieldName;
 import com.github.egatlovs.variablemanager.annotations.Ignore;
+import com.github.egatlovs.variablemanager.annotations.ObjectValue;
 
 import java.math.BigDecimal;
 
-public class VariableProcessorMockObjectJson {
+@ObjectValue(storeFields = true)
+public class ProcessingUnitMock {
 
     private String someString = "string";
     @FieldName(name = "fieldName", prefix = "fieldPrefix")
@@ -14,6 +16,16 @@ public class VariableProcessorMockObjectJson {
     private BigDecimal decimal = BigDecimal.ONE;
     @Ignore
     private Object ignoredField;
+
+    public ProcessingUnitMock() {
+    }
+
+    public ProcessingUnitMock(String someString, String annotated, BigDecimal decimal, Object ignoredField) {
+        this.someString = someString;
+        this.annotated = annotated;
+        this.decimal = decimal;
+        this.ignoredField = ignoredField;
+    }
 
     public String getSomeString() {
         return someString;
@@ -46,5 +58,4 @@ public class VariableProcessorMockObjectJson {
     public void setIgnoredField(Object ignoredField) {
         this.ignoredField = ignoredField;
     }
-
 }

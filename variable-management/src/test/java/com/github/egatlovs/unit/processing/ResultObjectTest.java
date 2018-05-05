@@ -1,7 +1,6 @@
 package com.github.egatlovs.unit.processing;
 
-import com.github.egatlovs.mock.ResultObjectMock;
-import com.github.egatlovs.mock.ResultObjectMockWithoutStoreFields;
+import com.github.egatlovs.mock.*;
 import com.github.egatlovs.variablemanager.exceptions.ResultObjectException;
 import com.github.egatlovs.variablemanager.processing.ResultObject;
 import org.assertj.core.api.Assertions;
@@ -52,6 +51,38 @@ public class ResultObjectTest {
             return;
         }
         Assertions.fail("exception should've been catched");
+    }
+
+    @Test
+    public void Should_Handle_Nested_Objects(){
+        ResultObject resultObject = new ResultObject();
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("someString", "var1");
+        variables.put("fieldPrefix_fieldName", "var2");
+        variables.put("myDecimal", BigDecimal.ZERO);
+        variables.put("nestedString", "myNestedString");
+        ResultObjectMockNested result = resultObject.getValue(ResultObjectMockNested.class, variables);
+        Assertions.assertThat(result.getAnnotated()).isEqualTo("var2");
+        Assertions.assertThat(result.getSomeString()).isEqualTo("var1");
+        Assertions.assertThat(result.getDecimal()).isEqualTo(BigDecimal.ZERO);
+        Assertions.assertThat(result.getIgnoredField()).isNull();
+        Assertions.assertThat(result.getNestedObject().getNestedString()).isEqualTo("myNestedString");
+    }
+
+    @Test
+    public void Should_Handle_Serialized_Nested_Object(){
+        ResultObject resultObject = new ResultObject();
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("someString", "var1");
+        variables.put("fieldPrefix_fieldName", "var2");
+        variables.put("myDecimal", BigDecimal.ZERO);
+        variables.put("nestedObject", new NestedObject("myNestedString"));
+        ResultObjectMockNestedObject result = resultObject.getValue(ResultObjectMockNestedObject.class, variables);
+        Assertions.assertThat(result.getAnnotated()).isEqualTo("var2");
+        Assertions.assertThat(result.getSomeString()).isEqualTo("var1");
+        Assertions.assertThat(result.getDecimal()).isEqualTo(BigDecimal.ZERO);
+        Assertions.assertThat(result.getIgnoredField()).isNull();
+        Assertions.assertThat(result.getNestedObject().getNestedString()).isEqualTo("myNestedString");
     }
 
 }
