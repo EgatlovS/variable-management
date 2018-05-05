@@ -5,7 +5,8 @@ import com.github.egatlovs.variablemanager.annotations.Ignore;
 
 import java.math.BigDecimal;
 
-public class VariableProcessorMockObject {
+@FieldName(name = "resultObject", prefix = "my")
+public class ResultObjectMockWithoutStoreFields {
 
     private String someString = "string";
     @FieldName(name = "fieldName", prefix = "fieldPrefix")
