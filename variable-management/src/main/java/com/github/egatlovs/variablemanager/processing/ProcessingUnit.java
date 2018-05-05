@@ -1,6 +1,5 @@
 package com.github.egatlovs.variablemanager.processing;
 
-import com.github.egatlovs.variablemanager.annotations.FieldName;
 import com.github.egatlovs.variablemanager.annotations.FileValue;
 import com.github.egatlovs.variablemanager.annotations.Ignore;
 import com.github.egatlovs.variablemanager.annotations.ObjectValue;
@@ -9,12 +8,10 @@ import org.camunda.bpm.engine.variable.VariableMap;
 import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.variable.value.builder.FileValueBuilder;
 import org.camunda.bpm.engine.variable.value.builder.ObjectValueBuilder;
-import org.camunda.bpm.model.dmn.instance.Variable;
 
 import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.util.Map;
 
 public class ProcessingUnit {
 
@@ -31,33 +28,42 @@ public class ProcessingUnit {
             if (!objectValue.storeFields()) {
                 getObjectValue(obj, variableMap, objectValue);
             } else {
-                Field[] declaredFields = obj.getClass().getDeclaredFields();
-                for (Field declaredField : declaredFields) {
-                    if (!declaredField.isSynthetic() && !declaredField.isAnnotationPresent(Ignore.class)) {
-                        declaredField.setAccessible(true);
-                        if (declaredField.isAnnotationPresent(ObjectValue.class)) {
-                            variableMap.putAll(this.getVariables(declaredField));
-                        } else if (declaredField.isAnnotationPresent(FileValue.class)) {
-                            try {
-                                getFileValue(obj, variableMap, declaredField);
-                            } catch (IllegalAccessException e) {
-                                ExceptionHandler.createVariableProcessingException(e, declaredField, obj);
-                            }
-                        } else {
-                            try {
-                                getFieldValue(obj, variableMap, declaredField);
-                            } catch (IllegalAccessException e) {
-                                ExceptionHandler.createVariableProcessingException(e, declaredField, obj);
-                            }
-                        }
-                    }
-                }
+                getNestedFields(obj, variableMap);
             }
         } else {
             getObjectValue(obj, variableMap, null);
         }
         return variableMap;
 
+    }
+
+    private void getNestedFields(Object obj, VariableMap variableMap) {
+        Field[] declaredFields = obj.getClass().getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            if (!declaredField.isSynthetic() && !declaredField.isAnnotationPresent(Ignore.class)) {
+                declaredField.setAccessible(true);
+                try {
+                    if (declaredField.isAnnotationPresent(ObjectValue.class)) {
+                        ObjectValue nestedObjectValue = declaredField.getAnnotation(ObjectValue.class);
+                        if (nestedObjectValue.storeFields()) {
+                            getNestedFields(declaredField.get(obj), variableMap);
+                        } else {
+                            getObjectValue(declaredField.get(obj), variableMap, nestedObjectValue);
+                        }
+                        variableMap.putAll(this.getVariables(declaredField));
+                    } else if (declaredField.isAnnotationPresent(FileValue.class)) {
+
+                        getFileValue(obj, variableMap, declaredField);
+
+                    } else {
+                        getFieldValue(obj, variableMap, declaredField);
+                    }
+
+                } catch (IllegalAccessException e) {
+                    ExceptionHandler.createVariableProcessingException(e, declaredField, obj);
+                }
+            }
+        }
     }
 
     private void getFieldValue(Object obj, VariableMap variableMap, Field declaredField) throws IllegalAccessException {

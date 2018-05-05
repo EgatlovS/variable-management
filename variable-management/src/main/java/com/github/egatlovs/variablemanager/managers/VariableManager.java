@@ -6,85 +6,85 @@ import javax.inject.Inject;
 @RequestScoped
 public class VariableManager {
 
-	@Inject
-	private ExecutionVariableManager executionManager;
-	@Inject
-	private RuntimeVariableManager runtimeManager;
-	@Inject
-	private TaskVariableManager taskManager;
+    @Inject
+    private ExecutionVariableManager executionManager;
+    @Inject
+    private RuntimeVariableManager runtimeManager;
+    @Inject
+    private TaskVariableManager taskManager;
 
-	public VariableManager(ExecutionVariableManager executionManager, RuntimeVariableManager runtimeManager,
-			TaskVariableManager taskManager) {
-		this.executionManager = executionManager;
-		this.runtimeManager = runtimeManager;
-		this.taskManager = taskManager;
-	}
+    public VariableManager(ExecutionVariableManager executionManager, RuntimeVariableManager runtimeManager,
+                           TaskVariableManager taskManager) {
+        this.executionManager = executionManager;
+        this.runtimeManager = runtimeManager;
+        this.taskManager = taskManager;
+    }
 
-	public VariableManager() {
-	}
+    public VariableManager() {
+    }
 
-	public ExecutionVariableManager getExecutionManager() {
-		return executionManager;
-	}
+    public ExecutionVariableManager getExecutionManager() {
+        return executionManager;
+    }
 
-	public void setExecutionManager(ExecutionVariableManager executionManager) {
-		this.executionManager = executionManager;
-	}
+    public void setExecutionManager(ExecutionVariableManager executionManager) {
+        this.executionManager = executionManager;
+    }
 
-	public RuntimeVariableManager getRuntimeManager() {
-		return runtimeManager;
-	}
+    public RuntimeVariableManager getRuntimeManager() {
+        return runtimeManager;
+    }
 
-	public void setRuntimeManager(RuntimeVariableManager runtimeManager) {
-		this.runtimeManager = runtimeManager;
-	}
+    public void setRuntimeManager(RuntimeVariableManager runtimeManager) {
+        this.runtimeManager = runtimeManager;
+    }
 
-	public TaskVariableManager getTaskManager() {
-		return taskManager;
-	}
+    public TaskVariableManager getTaskManager() {
+        return taskManager;
+    }
 
-	public void setTaskManager(TaskVariableManager taskManager) {
-		this.taskManager = taskManager;
-	}
+    public void setTaskManager(TaskVariableManager taskManager) {
+        this.taskManager = taskManager;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((executionManager == null) ? 0 : executionManager.hashCode());
-		result = prime * result + ((runtimeManager == null) ? 0 : runtimeManager.hashCode());
-		result = prime * result + ((taskManager == null) ? 0 : taskManager.hashCode());
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((executionManager == null) ? 0 : executionManager.hashCode());
+        result = prime * result + ((runtimeManager == null) ? 0 : runtimeManager.hashCode());
+        result = prime * result + ((taskManager == null) ? 0 : taskManager.hashCode());
+        return result;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		VariableManager other = (VariableManager) obj;
-		if (executionManager == null) {
-			if (other.executionManager != null)
-				return false;
-		} else if (!executionManager.equals(other.executionManager))
-			return false;
-		if (runtimeManager == null) {
-			if (other.runtimeManager != null)
-				return false;
-		} else if (!runtimeManager.equals(other.runtimeManager))
-			return false;
-		if (taskManager == null) {
-			return other.taskManager == null;
-		} else return taskManager.equals(other.taskManager);
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        VariableManager other = (VariableManager) obj;
+        if (executionManager == null) {
+            if (other.executionManager != null)
+                return false;
+        } else if (!executionManager.equals(other.executionManager))
+            return false;
+        if (runtimeManager == null) {
+            if (other.runtimeManager != null)
+                return false;
+        } else if (!runtimeManager.equals(other.runtimeManager))
+            return false;
+        if (taskManager == null) {
+            return other.taskManager == null;
+        } else return taskManager.equals(other.taskManager);
+    }
 
-	@Override
-	public String toString() {
-		return "VariableManager [executionManager=" + executionManager + ", runtimeManager=" + runtimeManager
-				+ ", taskManager=" + taskManager + "]";
-	}
+    @Override
+    public String toString() {
+        return "VariableManager [executionManager=" + executionManager + ", runtimeManager=" + runtimeManager
+                + ", taskManager=" + taskManager + "]";
+    }
 
 }

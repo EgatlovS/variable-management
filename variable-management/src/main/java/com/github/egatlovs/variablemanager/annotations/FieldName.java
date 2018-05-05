@@ -1,15 +1,11 @@
 package com.github.egatlovs.variablemanager.annotations;
 
-import org.camunda.bpm.engine.variable.Variables;
-import org.camunda.bpm.engine.variable.type.ValueType;
-import org.camunda.bpm.engine.variable.value.TypedValue;
-import org.camunda.bpm.engine.variable.Variables.SerializationDataFormats;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
 
 /**
  * TODO edit documentation
@@ -37,15 +33,15 @@ import java.lang.annotation.Target;
  * Default values:</br>
  * name has no default value</br>
  * prefix = null</br>
- * 
+ *
  * @author egatlovs
  */
 @Retention(RUNTIME)
-@Target({ TYPE, FIELD })
+@Target({TYPE, FIELD})
 public @interface FieldName {
 
-	String name() default "";
+    String name();
 
-	String prefix() default "";
+    String prefix() default "";
 
 }

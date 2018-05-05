@@ -57,16 +57,20 @@ public class ResultObject {
         return obj;
     }
 
-    private <T> void getFieldValues(Class<T> clazz, Map<String, Object> variables, T obj, FieldNameExtractor fieldNameExtractor) {
+    private <T> void getFieldValues(Class clazz, Map<String, Object> variables, Object obj, FieldNameExtractor fieldNameExtractor) {
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field declaredField : declaredFields) {
             if (!declaredField.isSynthetic() && !declaredField.isAnnotationPresent(Ignore.class)) {
                 declaredField.setAccessible(true);
                 try {
                     if (declaredField.isAnnotationPresent(ObjectValue.class)) {
-                        declaredField.set(obj, this.getValue(declaredField.getClass(), variables));
+                        ObjectValue objectValue = declaredField.getAnnotation(ObjectValue.class);
+                        if (objectValue.storeFields()) {
+                            getFieldValues(declaredField.getClass(), variables, declaredField.get(obj), fieldNameExtractor);
+                        } else {
+                            declaredField.set(obj, variables.get(fieldNameExtractor.getFrom(declaredField)));
+                        }
                     } else {
-
                         declaredField.set(obj, variables.get(fieldNameExtractor.getFrom(declaredField)));
                     }
                 } catch (IllegalAccessException e) {
