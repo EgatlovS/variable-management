@@ -215,7 +215,7 @@ public class TaskMock implements Task {
             TaskMock task = new TaskMock();
             task.taskInstanceId = taskId;
             task.name = "Task Name";
-            task.description = "thats a default task";
+            task.description = "that's a default task";
             task.priority = 0;
             task.owner = "Owner Man";
             task.assignee = "assignee";

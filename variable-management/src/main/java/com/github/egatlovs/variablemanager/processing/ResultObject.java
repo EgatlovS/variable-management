@@ -84,8 +84,7 @@ public class ResultObject {
 
     private <T> T getFromObjectValue(Map<String, Object> variables) {
         if (variables.size() == 1) {
-            for (Object value : variables.values()
-                    ) {
+            for (Object value : variables.values()) {
                 return (T) value;
             }
         }

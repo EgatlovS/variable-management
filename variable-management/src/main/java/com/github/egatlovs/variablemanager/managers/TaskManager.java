@@ -26,6 +26,7 @@ import java.util.Set;
  *
  * @author egatlovs
  */
+@SuppressWarnings("CdiInjectionPointsInspection")
 @RequestScoped
 public class TaskManager implements TaskVariableManager {
 

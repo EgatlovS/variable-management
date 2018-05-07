@@ -39,7 +39,7 @@ public class ResultObjectTest {
     }
 
     @Test
-    public void Should_Throw_Exception_On_Wrong_Varibales_Object() {
+    public void Should_Throw_Exception_On_Wrong_Variables_Object() {
         ResultObject resultObject = new ResultObject();
         Map<String, Object> variables = new HashMap<>();
         variables.put("my_resultObject", new ResultObjectMockWithoutStoreFields());

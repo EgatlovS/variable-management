@@ -44,7 +44,7 @@ public class ExceptionHandler {
             throw new ResultObjectException(
                     "Tried to instantiate object of class " + clazz.getName() + " but was not accessible", e);
         } else {
-            throw new ResultObjectException("Unknown Exception ocured", e);
+            throw new ResultObjectException("Unknown Exception occured", e);
         }
     }
 
@@ -63,7 +63,7 @@ public class ExceptionHandler {
             throw new ResultObjectException(
                     "Tried to access field " + field.getName() + " on wrong object " + obj.toString(), e);
         } else {
-            throw new ResultObjectException("Unknown Exception ocured", e);
+            throw new ResultObjectException("Unknown Exception occured", e);
         }
     }
 
@@ -83,7 +83,7 @@ public class ExceptionHandler {
             throw new VariableProcessingException(
                     "Tried to access field " + field.getName() + " on wrong object " + obj.toString(), e);
         } else {
-            throw new VariableProcessingException("Unknown Exception ocured", e);
+            throw new VariableProcessingException("Unknown Exception occured", e);
         }
     }
 

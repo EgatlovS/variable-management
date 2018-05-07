@@ -4,6 +4,7 @@ import com.github.egatlovs.variablemanager.annotations.FileValue;
 import com.github.egatlovs.variablemanager.annotations.Ignore;
 import com.github.egatlovs.variablemanager.annotations.ObjectValue;
 import com.github.egatlovs.variablemanager.exceptions.ExceptionHandler;
+import com.github.egatlovs.variablemanager.exceptions.UnsupportedFileTypeException;
 import org.camunda.bpm.engine.variable.VariableMap;
 import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.variable.value.builder.FileValueBuilder;
@@ -15,14 +16,14 @@ import java.lang.reflect.Field;
 
 public class ProcessingUnit {
 
-    private FieldNameExtractor fieldNameExtractor;
+    private final FieldNameExtractor fieldNameExtractor;
 
     public ProcessingUnit() {
         this.fieldNameExtractor = new FieldNameExtractor();
     }
 
     public VariableMap getVariables(Object obj) {
-        VariableMap variableMap = Variables.createVariables();
+        final VariableMap variableMap = Variables.createVariables();
         if (obj.getClass().isAnnotationPresent(ObjectValue.class)) {
             ObjectValue objectValue = obj.getClass().getAnnotation(ObjectValue.class);
             if (!objectValue.storeFields()) {
@@ -38,7 +39,7 @@ public class ProcessingUnit {
     }
 
     private void getNestedFields(Object obj, VariableMap variableMap) {
-        Field[] declaredFields = obj.getClass().getDeclaredFields();
+        final Field[] declaredFields = obj.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
             if (!declaredField.isSynthetic() && !declaredField.isAnnotationPresent(Ignore.class)) {
                 declaredField.setAccessible(true);
@@ -83,7 +84,7 @@ public class ProcessingUnit {
         } else if (fieldValue instanceof byte[]) {
             variableMap.putValue(name, fileValueBuilder.file((byte[]) fieldValue).create());
         } else {
-            // TODO throw exception unsupported file type
+            throw new UnsupportedFileTypeException("Annotation FileValue was set on an unsupported fileType. Supported FileTypes are byte[], File and InputStream. Check Field with name " + declaredField.getName() + ". Type was " + declaredField.getType());
         }
     }
 
