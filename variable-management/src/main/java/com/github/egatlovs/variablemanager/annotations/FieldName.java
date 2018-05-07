@@ -8,12 +8,11 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * TODO edit documentation
- * <b>ExecutionField</b></br>
+ * <b>FieldName</b></br>
  * </br>
- * You can annotate fields and classes with {@code @ExecutionField} to set a
+ * You can annotate fields and classes with {@code @FieldName} to set a
  * custom name and prefix. The processing unit will recognize this and use that
- * name for the Field name in the execution.</br>
+ * name for the Fields name in the execution.</br>
  * If name is set it will be used for the actual name of the field inside the
  * execution.</br>
  * </br>
@@ -32,7 +31,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * </br>
  * Default values:</br>
  * name has no default value</br>
- * prefix = null</br>
+ * prefix = ""</br>
  *
  * @author egatlovs
  */

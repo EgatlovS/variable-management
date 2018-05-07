@@ -5,9 +5,9 @@ import com.github.egatlovs.variablemanager.annotations.FieldName;
 import java.lang.reflect.Field;
 
 /**
- * <b>FieldName</b></br>
+ * <b>FieldNameExtractor</b></br>
  * </br>
- * FieldName is capable of building a name of a given Field, Class or Object.
+ * FieldNameExtractor is capable of building a name of a given Field, Class or Object.
  *
  * @author egatlovs
  */
@@ -15,7 +15,7 @@ public class FieldNameExtractor {
 
     /**
      * Returns the name of the given Field. If the Field is annotated with
-     * com.github.egatlovs.variablemanager.annotations.FieldName the values will be recognized and used to provide the right
+     * {@code @FieldName} the values will be recognized and used to provide the right
      * name.
      *
      * @param field - The field to retrieve the name from
@@ -39,7 +39,7 @@ public class FieldNameExtractor {
 
     /**
      * Returns the name of the given Class. If the Class is annotated with
-     * com.github.egatlovs.variablemanager.annotations.FieldName the values will be recognized and used to provide the right
+     * {@code @FieldName} the values will be recognized and used to provide the right
      * name.
      *
      * @param clazz - The Class to retrieve the name from
@@ -47,7 +47,7 @@ public class FieldNameExtractor {
      */
     public String getFrom(@SuppressWarnings("rawtypes") Class clazz) {
         @SuppressWarnings("unchecked")
-        com.github.egatlovs.variablemanager.annotations.FieldName executionField = (com.github.egatlovs.variablemanager.annotations.FieldName) clazz.getAnnotation(com.github.egatlovs.variablemanager.annotations.FieldName.class);
+        FieldName executionField = (FieldName) clazz.getAnnotation(FieldName.class);
         String name;
         if (executionField == null) {
             name = clazz.getSimpleName();
@@ -64,7 +64,7 @@ public class FieldNameExtractor {
 
     /**
      * Returns the name of the given Object. If the Object is annotated with
-     * com.github.egatlovs.variablemanager.annotations.FieldName the values will be recognized and used to provide the right
+     * {@code @FieldName} the values will be recognized and used to provide the right
      * name.
      *
      * @param o - The Object to retrieve the name from

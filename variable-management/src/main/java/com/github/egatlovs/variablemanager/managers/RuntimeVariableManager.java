@@ -11,12 +11,12 @@ public interface RuntimeVariableManager {
      * <ol>
      * <li>The object will be validated using bean validation.</li>
      * <li>The given object will be processed using
-     * {@code VariableProcessor.class}</li>
+     * {@code ProcessingUnit.class}</li>
      * </ol>
      * If you want more Information of how variables are processed watch out for
-     * {@code VariableProcessor.class}. </br>
+     * {@code ProcessingUnit.class}. </br>
      * If you want to manipulate how your variables are processed look for
-     * {@code @Execution}, {@code @ExecutionField} and {@code @Ignore}. </br>
+     * {@code @ObjectValue}, {@code @FileValue}, {@code @FieldName} and {@code @Ignore}. </br>
      * </br>
      *
      * @param value       - The value to be set to the Execution
@@ -31,12 +31,12 @@ public interface RuntimeVariableManager {
      * <ol>
      * <li>The object will be validated using bean validation.</li>
      * <li>The given object will be processed using
-     * {@code VariableProcessor.class}</li>
+     * {@code ProcessingUnit.class}</li>
      * </ol>
      * If you want more Information of how variables are processed watch out for
-     * {@code VariableProcessor.class}. </br>
+     * {@code ProcessingUnit.class}. </br>
      * If you want to manipulate how your variables are processed look for
-     * {@code @Execution}, {@code @ExecutionField} and {@code @Ignore}. </br>
+     * {@code @ObjectValue}, {@code @FileValue}, {@code @FieldName} and {@code @Ignore}. </br>
      * </br>
      *
      * @param value       - The value to be set to the Execution

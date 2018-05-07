@@ -3,6 +3,17 @@ package com.github.egatlovs.variablemanager.managers;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
+/**
+ * <b>VariableManager</b></br>
+ * </br>
+ * VariableManager wraps each Manager and offers access to them.</br>
+ * The VariableManager is injectable. If you inject it in your bean it will
+ * initialize itself with the Managers provided in the environment.
+ * <p>
+ * For more Information read the documentation of TaskManager, RuntimeManager and ExecutionManager
+ *
+ * @author egatlovs
+ */
 @RequestScoped
 public class VariableManager {
 
@@ -45,46 +56,6 @@ public class VariableManager {
 
     public void setTaskManager(TaskVariableManager taskManager) {
         this.taskManager = taskManager;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((executionManager == null) ? 0 : executionManager.hashCode());
-        result = prime * result + ((runtimeManager == null) ? 0 : runtimeManager.hashCode());
-        result = prime * result + ((taskManager == null) ? 0 : taskManager.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        VariableManager other = (VariableManager) obj;
-        if (executionManager == null) {
-            if (other.executionManager != null)
-                return false;
-        } else if (!executionManager.equals(other.executionManager))
-            return false;
-        if (runtimeManager == null) {
-            if (other.runtimeManager != null)
-                return false;
-        } else if (!runtimeManager.equals(other.runtimeManager))
-            return false;
-        if (taskManager == null) {
-            return other.taskManager == null;
-        } else return taskManager.equals(other.taskManager);
-    }
-
-    @Override
-    public String toString() {
-        return "VariableManager [executionManager=" + executionManager + ", runtimeManager=" + runtimeManager
-                + ", taskManager=" + taskManager + "]";
     }
 
 }

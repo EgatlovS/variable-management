@@ -23,7 +23,6 @@ import java.util.Map;
 public class ResultObject {
 
     /**
-     * TODO edit documentation
      * GetValue creates an Object of the given Class and maps all the given
      * variables to the corresponding Fields.
      *

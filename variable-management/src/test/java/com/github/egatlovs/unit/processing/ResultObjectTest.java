@@ -54,7 +54,7 @@ public class ResultObjectTest {
     }
 
     @Test
-    public void Should_Handle_Nested_Objects(){
+    public void Should_Handle_Nested_Objects() {
         ResultObject resultObject = new ResultObject();
         Map<String, Object> variables = new HashMap<>();
         variables.put("someString", "var1");
@@ -70,7 +70,7 @@ public class ResultObjectTest {
     }
 
     @Test
-    public void Should_Handle_Serialized_Nested_Object(){
+    public void Should_Handle_Serialized_Nested_Object() {
         ResultObject resultObject = new ResultObject();
         Map<String, Object> variables = new HashMap<>();
         variables.put("someString", "var1");

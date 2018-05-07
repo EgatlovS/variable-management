@@ -4,7 +4,7 @@ public class NestedObject {
 
     private String nestedString = "nestedString";
 
-    public NestedObject(){
+    public NestedObject() {
 
     }
 

@@ -8,11 +8,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * TODO edit documentation
  * <b>FieldNames</b></br>
  * </br>
  * FieldNames is capable of building names out of a given Class. If the Class is
- * annotated with {@code @Execution} the values of the Annotation will be used
+ * annotated with {@code @ObjectValue} the values of the Annotation will be used
  * to determine if the name of the Object or of the Fields of the Object are
  * returned. </br>
  * </br>
@@ -25,9 +24,8 @@ import java.util.Set;
 public class FieldNames {
 
     /**
-     * TODO edit documentation
      * This method determines names out of a given Class. If the Class is annotated
-     * with {@code @Execution} the values of the Annotation will be used to
+     * with {@code @ObjectValue} the values of the Annotation will be used to
      * determine if the name of the Object or of the Fields of the Object are
      * returned. </br>
      * </br>

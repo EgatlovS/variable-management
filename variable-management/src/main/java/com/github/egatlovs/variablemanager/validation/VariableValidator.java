@@ -25,7 +25,6 @@ public class VariableValidator {
      * @param value - The object to be validated
      * @throws ViolationException
      */
-    @SuppressWarnings("JavaDoc")
     public static void validate(Object value) {
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
         Set<ConstraintViolation<Object>> constraintViolations = validator.validate(value);

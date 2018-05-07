@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
  * <b>ExceptionHandler</b></br>
  * </br>
  * This class helps creating exceptions inside of the processing classes
- * {@code ResultObject} and {@code VariableProcessor}. Because both of them use
+ * {@code ResultObject} and {@code ProcessingUnit}. Because both of them use
  * Reflection inside many situations where exceptions could be thrown are
  * present. This class uses the thrown exceptions and maps them to more readable
  * messages which help to understand what went wrong.</br>
