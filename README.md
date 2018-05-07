@@ -1,5 +1,10 @@
 # VariableManagement
 
+## Build Status
+
+[![Build Status](https://travis-ci.org/EgatlovS/variable-management.svg?branch=master)](https://travis-ci.org/EgatlovS/variable-management)
+[![codecov.io](https://codecov.io/gh/EgatlovS/variable-management/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/EgatlovS/variable-management?branch=master)
+
 ## Foreword
 
 Variable Management is an extension of the camunda java api.
@@ -9,6 +14,7 @@ I personally recognized that executing tasks developing and modelling a process 
 
 ## Content
 
+- [Build Status](#build-status)
 - [The reason why](#the-reason-why)
 - [Introduction](#introduction)
     - [Managers](#managers)
