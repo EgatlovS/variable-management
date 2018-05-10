@@ -7,8 +7,8 @@ Many thanks for your contribution, we truly appreciate it. We will appreciate it
 - You ran the build locally and it passed
 - You edited the CHANGE_ME's below
 
-> The issue number CHANGE_ME is solved after this pull request is accepted.
+**The issue number CHANGE_ME is solved after this pull request is accepted.**
 
-> This pull request contains CHANGE_ME.
+**This pull request contains CHANGE_ME.**
 
 Thank you for your contribution!
