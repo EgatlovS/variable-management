@@ -85,7 +85,7 @@ Following Annotations are provided:
 
  - [VariableManagement-Sample-Process](coming-soon) made by EgatlovS
 
-*You got an OpenSource Project using this Framework? -> Send an [Email](dev.egatlovs@gmail.com) and I will paste the Link for the community!*
+*You got an OpenSource Project using this Framework? -> Send an [Email](mailto:dev.egatlovs@gmail.com) and I will paste the Link for the community!*
 
 ## Documentation
 
@@ -154,7 +154,7 @@ And now think how your code would look like if you gather twenty different varia
 Yes thats a mess.
 
 If you read through until now and you actually don't think i made a huge mistake, you can see some examples on how I personally tried to make things less messy and try to make everything feel a little more known.
-Otherwise if you think I'm totally wrong don't hesitate [contact me](dev.egatlovs@gmail.com) and let me learn from my mistakes.
+Otherwise if you think I'm totally wrong don't hesitate [contact me](mailto:dev.egatlovs@gmail.com) and let me learn from my mistakes.
 
 ## Code Snippets
 
