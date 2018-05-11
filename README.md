@@ -37,11 +37,11 @@ See the Topics below to read more about Managers and their abilities.
 Each Manager provides the ability to read, write and remove variables globally and locally. Also every Manager allows access to the wrapped Camunda object.
 
 Following Managers are provided:
- - RuntimeManager
+ - **RuntimeManager**
  	- This Manager wraps a RuntimeService.
- - TaskManager
+ - **TaskManager**
  	- This Manager wraps a TaskService.
- - ExecutionManager
+ - **ExecutionManager**
 	- This Manager wraps the current DelegateExecution.
 
 You can use each Manager to write, read or remove an Object from an Execution.
@@ -56,19 +56,19 @@ so that you can manipulate the Result. More on Manipulations of an Execution Ent
 Each Annotation gives you the ability to manipulate the Object retrieved or written to the Execution.
 
 Following Annotations are provided:
- - ObjectValue
+ - **ObjectValue**
  	- provides following fields:
  		- storeFields -> where you can decide if the whole Object is used and serialized with the values below or the Declared Fields them self are used
  		- serializationDataFormat -> which takes the Camunda provided serializationDataFormats  
  		- customSerializationDataFormat -> where you can specify you're own custom Formats
- - FileValue
+ - **FileValue**
  	- provides following fields:
  		- name -> the filename
  		- encoding -> the files encoding
  		- mimeType -> the files mimeType
- - Ignore
+ - **Ignore**
  	- tells the Manager to ignore the field
- - FieldName
+ - **FieldName**
  	- name -> the name to be used (at default the variable name would be used)
  	- prefix -> the prefix to be used (if set this would result in a name like: *prefix_name*)
 
