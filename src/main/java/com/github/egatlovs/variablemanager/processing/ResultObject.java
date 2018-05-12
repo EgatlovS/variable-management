@@ -56,7 +56,7 @@ public class ResultObject {
         return obj;
     }
 
-    private <T> void getFieldValues(Class clazz, Map<String, Object> variables, Object obj, FieldNameExtractor fieldNameExtractor) {
+    private <T> void getFieldValues(Class<T> clazz, Map<String, Object> variables, Object obj, FieldNameExtractor fieldNameExtractor) {
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field declaredField : declaredFields) {
             if (!declaredField.isSynthetic() && !declaredField.isAnnotationPresent(Ignore.class)) {
@@ -81,6 +81,7 @@ public class ResultObject {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private <T> T getFromObjectValue(Map<String, Object> variables) {
         if (variables.size() == 1) {
             for (Object value : variables.values()) {
