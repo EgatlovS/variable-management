@@ -99,4 +99,24 @@ public class ExecutionManagerTest {
         Assertions.assertThat(execution.getVariableLocal("myDecimal")).isEqualTo(BigDecimal.ONE);
     }
 
+    @Test
+    public void Should_Have_Default_Constructor() {
+        ExecutionManager manager = new ExecutionManager();
+        Assertions.assertThat(manager).isNotNull();
+    }
+
+    @Test
+    public void Should_Allow_Access_To_Wrapped_Service() {
+        ExecutionManager manager = new ExecutionManager();
+        Assertions.assertThat(manager.getExecutionService()).isNull();
+    }
+    @Test
+    public void Should_Allow_To_Manipulate_Wrapped_Service() {
+        ExecutionManager manager = new ExecutionManager();
+        Assertions.assertThat(manager.getExecutionService()).isNull();
+        DelegateExecution execution = ExecutionMockBuilder.build();
+        manager.setExecutionService(execution);
+        Assertions.assertThat(manager.getExecutionService()).isEqualTo(execution);
+    }
+
 }
