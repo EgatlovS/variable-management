@@ -110,6 +110,7 @@ public class TaskManagerTest {
         TaskManager manager = new TaskManager();
         Assertions.assertThat(manager.getExecutionService()).isNull();
     }
+
     @Test
     public void Should_Allow_To_Manipulate_Wrapped_Service() {
         TaskManager manager = new TaskManager();

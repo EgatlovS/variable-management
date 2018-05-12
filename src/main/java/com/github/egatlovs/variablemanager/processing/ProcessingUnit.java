@@ -116,7 +116,7 @@ public class ProcessingUnit {
         String name = fieldNameExtractor.getFrom(declaredField);
         FileValueBuilder fileValueBuilder = Variables.fileValue(fileValue.fileName()).encoding(fileValue.encoding()).mimeType(fileValue.mimeType());
         Object fieldValue = declaredField.get(obj);
-        if(fieldValue == null){
+        if (fieldValue == null) {
             variableMap.putValue(name, fileValueBuilder.create());
         } else if (declaredField.getType().isAssignableFrom(File.class)) {
             variableMap.putValue(name, fileValueBuilder.file((File) fieldValue).create());

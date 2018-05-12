@@ -110,6 +110,7 @@ public class ExecutionManagerTest {
         ExecutionManager manager = new ExecutionManager();
         Assertions.assertThat(manager.getExecutionService()).isNull();
     }
+
     @Test
     public void Should_Allow_To_Manipulate_Wrapped_Service() {
         ExecutionManager manager = new ExecutionManager();

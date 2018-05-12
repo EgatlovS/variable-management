@@ -111,6 +111,7 @@ public class RuntimeManagerTest {
         RuntimeManager manager = new RuntimeManager();
         Assertions.assertThat(manager.getExecutionService()).isNull();
     }
+
     @Test
     public void Should_Allow_To_Manipulate_Wrapped_Service() {
         RuntimeManager manager = new RuntimeManager();

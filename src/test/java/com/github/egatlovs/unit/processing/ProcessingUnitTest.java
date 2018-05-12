@@ -11,7 +11,6 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Collection;
 
 public class ProcessingUnitTest {
 

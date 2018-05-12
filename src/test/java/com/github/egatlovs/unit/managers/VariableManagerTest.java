@@ -10,31 +10,31 @@ import org.junit.Test;
 public class VariableManagerTest {
 
     @Test
-    public void Should_Allow_Access_To_ExecutionManager(){
+    public void Should_Allow_Access_To_ExecutionManager() {
         VariableManager manager = new VariableManager();
         Assertions.assertThat(manager.getExecutionManager()).isNull();
     }
 
     @Test
-    public void Should_Allow_Access_To_RuntimeManager(){
+    public void Should_Allow_Access_To_RuntimeManager() {
         VariableManager manager = new VariableManager();
         Assertions.assertThat(manager.getRuntimeManager()).isNull();
     }
 
     @Test
-    public void Should_Allow_Access_To_TaskManager(){
+    public void Should_Allow_Access_To_TaskManager() {
         VariableManager manager = new VariableManager();
         Assertions.assertThat(manager.getTaskManager()).isNull();
     }
 
     @Test
-    public void Should_Have_Default_Constuctor(){
+    public void Should_Have_Default_Constuctor() {
         VariableManager manager = new VariableManager();
         Assertions.assertThat(manager).isNotNull();
     }
 
     @Test
-    public void Should_Allow_To_Be_Initialized_With_Managers(){
+    public void Should_Allow_To_Be_Initialized_With_Managers() {
         RuntimeManager runtimeManager = new RuntimeManager();
         TaskManager taskManager = new TaskManager();
         ExecutionManager executionManager = new ExecutionManager();
@@ -46,7 +46,7 @@ public class VariableManagerTest {
     }
 
     @Test
-    public void Should_Allow_To_Manipulate_RuntimeManager(){
+    public void Should_Allow_To_Manipulate_RuntimeManager() {
         VariableManager manager = new VariableManager();
         Assertions.assertThat(manager.getRuntimeManager()).isNull();
         RuntimeManager runtimeManager = new RuntimeManager();
@@ -55,7 +55,7 @@ public class VariableManagerTest {
     }
 
     @Test
-    public void Should_Allow_To_Manipulate_ExecutionManager(){
+    public void Should_Allow_To_Manipulate_ExecutionManager() {
         VariableManager manager = new VariableManager();
         Assertions.assertThat(manager.getRuntimeManager()).isNull();
         ExecutionManager executionManager = new ExecutionManager();
@@ -64,7 +64,7 @@ public class VariableManagerTest {
     }
 
     @Test
-    public void Should_Allow_To_Manipulate_TaskManager(){
+    public void Should_Allow_To_Manipulate_TaskManager() {
         VariableManager manager = new VariableManager();
         Assertions.assertThat(manager.getTaskManager()).isNull();
         TaskManager taskManager = new TaskManager();
