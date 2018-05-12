@@ -13,14 +13,14 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * <b>RuntimeManager</b></br>
- * </br>
+ * <b>RuntimeManager</b><br>
+ * <br>
  * RuntimeManager wraps a RuntimeService and offers methods to set, get and
- * remove variables based of an ExecutionEntity.</br>
+ * remove variables based of an ExecutionEntity.<br>
  * The Manager itself uses BeanValidation on each given Object, so you can
  * simply annotate your ExecutionEntities with the well known BeanValidation
- * annotations. </br>
- * </br>
+ * annotations. <br>
+ * <br>
  * The RuntimeManager is injectable. If you inject it in your bean it will
  * initialize itself with the RuntimeManager provided in the environment.
  *

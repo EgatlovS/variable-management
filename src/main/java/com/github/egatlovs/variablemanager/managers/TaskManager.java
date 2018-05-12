@@ -13,14 +13,14 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * <b>TaskManager</b></br>
- * </br>
+ * <b>TaskManager</b><br>
+ * <br>
  * TaskManager wraps a TaskService and offers methods to set, get and remove
- * variables based of an ExecutionEntity.</br>
+ * variables based of an ExecutionEntity.<br>
  * The Manager itself uses BeanValidation on each given Object, so you can
  * simply annotate your ExecutionEntities with the well known BeanValidation
- * annotations. </br>
- * </br>
+ * annotations. <br>
+ * <br>
  * The TaskManager is injectable. If you inject it in your bean it will
  * initialize itself with the TaskManager provided in the environment.
  *

@@ -13,14 +13,14 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * <b>ExecutionManager</b></br>
- * </br>
+ * <b>ExecutionManager</b><br>
+ * <br>
  * ExecutionManager wraps a DelegateExecution and offers methods to set, get and
- * remove variables based of an ExecutionEntity.</br>
+ * remove variables based of an ExecutionEntity.<br>
  * The Manager itself uses BeanValidation on each given Object, so you can
  * simply annotate your ExecutionEntities with the well known BeanValidation
- * annotations. </br>
- * </br>
+ * annotations. <br>
+ * <br>
  * The ExecutionManager is injectable. If you inject it in your bean it will
  * initialize itself with the current delegate execution if present. Otherwise
  * if no execution is present the Manager will initialize itself with null.

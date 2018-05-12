@@ -3,8 +3,8 @@ package com.github.egatlovs.variablemanager.exceptions;
 import com.github.egatlovs.variablemanager.validation.ConstraintViolationMessage;
 
 /**
- * <b>ViolationException</b></br>
- * </br>
+ * <b>ViolationException</b><br>
+ * <br>
  * This is a RuntimeException which will be thrown if the validation of an
  * ExecutionEntity fails. The message contains each validation failure.
  *

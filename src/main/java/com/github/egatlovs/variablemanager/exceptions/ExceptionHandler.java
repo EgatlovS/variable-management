@@ -4,13 +4,13 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * <b>ExceptionHandler</b></br>
- * </br>
+ * <b>ExceptionHandler</b><br>
+ * <br>
  * This class helps creating exceptions inside of the processing classes
  * {@code ResultObject} and {@code ProcessingUnit}. Because both of them use
  * Reflection inside many situations where exceptions could be thrown are
  * present. This class uses the thrown exceptions and maps them to more readable
- * messages which help to understand what went wrong.</br>
+ * messages which help to understand what went wrong.<br>
  *
  * @author egatlovs
  */
@@ -22,7 +22,8 @@ public class ExceptionHandler {
      *
      * @param e     - thrown Exception
      * @param clazz - Class which caused the exception
-     * @throws ResultObjectException
+     * @param <T>   - The type of the Class causing the exception
+     * @throws ResultObjectException is thrown at any time
      */
     public static <T> void createResultObjectException(Exception e, Class<T> clazz) {
         if (e instanceof InstantiationException) {
@@ -54,9 +55,9 @@ public class ExceptionHandler {
      * @param e     - thrown Exception
      * @param field - Field which caused the Exception
      * @param obj   - Object which caused the Exception
-     * @throws ResultObjectException
+     * @throws ResultObjectException is thrown at any time
      */
-    public static <T> void createResultObjectException(Exception e, Field field, Object obj) {
+    public static void createResultObjectException(Exception e, Field field, Object obj) {
         if (e instanceof IllegalAccessException) {
             throw new ResultObjectException("Tried to access field " + field.getName() + " but was not accessible.", e);
         } else if (e instanceof IllegalArgumentException) {
@@ -73,7 +74,7 @@ public class ExceptionHandler {
      * @param e     - thrown Exception
      * @param field - Field which caused the Exception
      * @param obj   - Object which caused the Exception
-     * @throws VariableProcessingException
+     * @throws VariableProcessingException is thrown at any time
      */
     public static void createVariableProcessingException(Exception e, Field field, Object obj) {
         if (e instanceof IllegalAccessException) {

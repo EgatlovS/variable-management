@@ -9,13 +9,13 @@ import java.lang.reflect.Field;
 import java.util.Map;
 
 /**
- * <b>ResultObject</b></br>
- * </br>
- * ResultObject represents an ExecutionEntity.</br>
+ * <b>ResultObject</b><br>
+ * <br>
+ * ResultObject represents an ExecutionEntity.<br>
  * After the variables of a given Class are gathered from the Execution, a
  * ResultObject can be created. It takes those variables and a Class which it
  * should represent. This class then instantiates the given Class and maps the
- * variables to it. </br>
+ * variables to it. <br>
  *
  * @author egatlovs
  */
@@ -28,8 +28,9 @@ public class ResultObject {
      *
      * @param clazz     - The class to be created
      * @param variables - The variables to be mapped
+     * @param <T>       - The type of the clazz
      * @return The created Object
-     * @throws ResultObjectException
+     * @throws ResultObjectException is thrown if top level object should be retrieved but there are more than one variables present
      */
     public <T> T getValue(Class<T> clazz, Map<String, Object> variables) {
         T obj = instantiateObject(clazz);
@@ -56,7 +57,7 @@ public class ResultObject {
         return obj;
     }
 
-    private <T> void getFieldValues(Class clazz, Map<String, Object> variables, Object obj, FieldNameExtractor fieldNameExtractor) {
+    private <T> void getFieldValues(Class<T> clazz, Map<String, Object> variables, Object obj, FieldNameExtractor fieldNameExtractor) {
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field declaredField : declaredFields) {
             if (!declaredField.isSynthetic() && !declaredField.isAnnotationPresent(Ignore.class)) {
@@ -81,6 +82,7 @@ public class ResultObject {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private <T> T getFromObjectValue(Map<String, Object> variables) {
         if (variables.size() == 1) {
             for (Object value : variables.values()) {

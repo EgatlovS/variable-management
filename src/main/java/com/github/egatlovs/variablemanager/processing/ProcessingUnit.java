@@ -16,21 +16,21 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 
 /**
- * <b>ProcessingUnit</b></br>
- * </br>
- * ProcessingUnit is capable of extracting variables from ExecutionEntitys.</br>
+ * <b>ProcessingUnit</b><br>
+ * <br>
+ * ProcessingUnit is capable of extracting variables from ExecutionEntitys.<br>
  * You can manipulate the processing of Objects and Field by using following annotations:
- * </br>
+ * <br>
  * <ul>
  * <li>Ignore</li>
  * <li>ObjectValue</li>
  * <li>FileValue</li>
  * <li>FieldName</li>
  * </ul>
- * </br>
+ * <br>
  * <p>
- * For more Information see documentation for the given annotations.</br>
- * </br>
+ * For more Information see documentation for the given annotations.<br>
+ * <br>
  *
  * @author egatlovs
  */
@@ -45,7 +45,7 @@ public class ProcessingUnit {
     /**
      * Retrieves execution variables from an Object.
      * This method processes the Object and watches out for manipulating
-     * annotations like:</br>
+     * annotations like:<br>
      * <ul>
      * <li>Ignore</li>
      * <li>ObjectValue</li>
@@ -55,7 +55,7 @@ public class ProcessingUnit {
      * If one of them is present the processing reacts to it and
      * extracts variables in a different way.
      * For more information read the documentation of the given annotations.
-     * </br>
+     * <br>
      *
      * @param obj The Object variables should be processed from
      * @return The variables processed

@@ -2,6 +2,9 @@
 
 ## Badges
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.egatlovs/variable-management.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.egatlovs/variable-management)
+[![Javadoc](http://www.javadoc.io/badge/com.github.egatlovs/variable-management.svg)](http://www.javadoc.io/doc/com.github.egatlovs/variable-management)
+
 [![Build Status](https://travis-ci.org/EgatlovS/variable-management.svg?branch=master)](https://travis-ci.org/EgatlovS/variable-management)
 [![codecov.io](https://codecov.io/gh/EgatlovS/variable-management/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/EgatlovS/variable-management?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -75,7 +78,7 @@ Following Annotations are provided:
 ## Getting Started
 
 1. Create a project using [Camundas Maven Archetype for a Process Application (EJB, WAR)](https://docs.camunda.org/manual/7.4/user-guide/process-applications/maven-archetypes/#overview-of-available-maven-archetypes).
-2. Add the [newest dependency](https://search.maven.org/) of this project.
+2. Add the [newest dependency](https://search.maven.org/#search%7Cga%7C1%7Ccom.github.egatlovs) of this project.
 3. Create a process and a Service Task with a JavaDelegate.
 4. Create an Object and declare with the provided Annotations.
 5. Inject the ExecutionManager into your Delegate.
@@ -83,7 +86,7 @@ Following Annotations are provided:
 
 ## Example Projects
 
- - [VariableManagement-Sample-Process](coming-soon) made by EgatlovS
+ - [Variable Management Sample](https://github.com/EgatlovS/variable-management-sample) made by EgatlovS
 
 *You got an OpenSource Project using this Framework? -> Send an [Email](mailto:dev.egatlovs@gmail.com) and I will paste the Link for the community!*
 

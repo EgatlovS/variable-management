@@ -8,30 +8,30 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * <b>FieldName</b></br>
- * </br>
+ * <b>FieldName</b><br>
+ * <br>
  * You can annotate fields and classes with {@code @FieldName} to set a
  * custom name and prefix. The processing unit will recognize this and use that
- * name for the Fields name in the execution.</br>
+ * name for the Fields name in the execution.<br>
  * If name is set it will be used for the actual name of the field inside the
- * execution.</br>
- * </br>
+ * execution.<br>
+ * <br>
  * <b>Note</b><i> that if you use this Annotation the name is required. If you
  * don't annotate a field which will be processed the actual name of the field
- * will be used.</i></br>
- * </br>
+ * will be used.</i><br>
+ * <br>
  * If prefix is set to some string the execution field will be named with the
- * prefix, an underscore and the specified name afterwards. </br>
- * </br>
- * <b>Example: </b></br>
- * {@code prefix + "_" + name}</br>
- * </br>
+ * prefix, an underscore and the specified name afterwards. <br>
+ * <br>
+ * <b>Example: </b><br>
+ * {@code prefix + "_" + name}<br>
+ * <br>
  * If prefix is set to null or is an empty String it will be ignored and the
- * execution field will be named with the name value you specified.</br>
- * </br>
- * Default values:</br>
- * name has no default value</br>
- * prefix = ""</br>
+ * execution field will be named with the name value you specified.<br>
+ * <br>
+ * Default values:<br>
+ * name has no default value<br>
+ * prefix = ""<br>
  *
  * @author egatlovs
  */
