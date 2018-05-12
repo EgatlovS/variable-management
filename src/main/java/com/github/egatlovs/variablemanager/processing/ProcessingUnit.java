@@ -116,11 +116,13 @@ public class ProcessingUnit {
         String name = fieldNameExtractor.getFrom(declaredField);
         FileValueBuilder fileValueBuilder = Variables.fileValue(fileValue.fileName()).encoding(fileValue.encoding()).mimeType(fileValue.mimeType());
         Object fieldValue = declaredField.get(obj);
-        if (fieldValue instanceof File) {
+        if (fieldValue == null) {
+            variableMap.putValue(name, fileValueBuilder.create());
+        } else if (declaredField.getType().isAssignableFrom(File.class)) {
             variableMap.putValue(name, fileValueBuilder.file((File) fieldValue).create());
-        } else if (fieldValue instanceof InputStream) {
+        } else if (declaredField.getType().isAssignableFrom(InputStream.class)) {
             variableMap.putValue(name, fileValueBuilder.file((InputStream) fieldValue).create());
-        } else if (fieldValue instanceof byte[]) {
+        } else if (declaredField.getType().isAssignableFrom(byte[].class)) {
             variableMap.putValue(name, fileValueBuilder.file((byte[]) fieldValue).create());
         } else {
             throw new UnsupportedFileTypeException("Annotation FileValue was set on an unsupported fileType. Supported FileTypes are byte[], File and InputStream. Check Field with name " + declaredField.getName() + ". Type was " + declaredField.getType());

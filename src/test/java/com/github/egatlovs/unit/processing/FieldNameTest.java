@@ -30,4 +30,19 @@ public class FieldNameTest {
                 .isEqualTo("name");
     }
 
+    @Test
+    public void Should_Return_Declared_Prefix_And_Name_When_Annotation_Is_Present_And_A_Class_Is_Passed_As_Parameter() {
+        FieldNameExtractor fieldName = new FieldNameExtractor();
+        Assertions.assertThat(fieldName.getFrom(FieldNameMockWithNameAndPrefix.class))
+                .isEqualTo("prefix_name");
+    }
+
+    @Test
+    public void Should_Return_Declared_Name_When_Annotation_Is_Present_But_No_Prefix_Is_Applied_And_A_Class_Is_Passed_As_Parameter() {
+        FieldNameExtractor fieldName = new FieldNameExtractor();
+        Assertions.assertThat(fieldName.getFrom(FieldNameMockWithoutPrefixAnnotation.class))
+                .isEqualTo("name");
+    }
+
+
 }

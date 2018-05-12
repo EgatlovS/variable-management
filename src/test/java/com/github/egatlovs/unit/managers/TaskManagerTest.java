@@ -99,4 +99,25 @@ public class TaskManagerTest {
         Assertions.assertThat(service.getVariableLocal("taskId", "myDecimal")).isEqualTo(BigDecimal.ONE);
     }
 
+    @Test
+    public void Should_Have_Default_Constructor() {
+        TaskManager manager = new TaskManager();
+        Assertions.assertThat(manager).isNotNull();
+    }
+
+    @Test
+    public void Should_Allow_Access_To_Wrapped_Service() {
+        TaskManager manager = new TaskManager();
+        Assertions.assertThat(manager.getExecutionService()).isNull();
+    }
+
+    @Test
+    public void Should_Allow_To_Manipulate_Wrapped_Service() {
+        TaskManager manager = new TaskManager();
+        Assertions.assertThat(manager.getExecutionService()).isNull();
+        TaskService service = TaskServiceMockBuilder.build();
+        manager.setExecutionService(service);
+        Assertions.assertThat(manager.getExecutionService()).isEqualTo(service);
+    }
+
 }

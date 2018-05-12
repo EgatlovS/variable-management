@@ -100,4 +100,25 @@ public class RuntimeManagerTest {
         Assertions.assertThat(service.getVariableLocal("executionId", "myDecimal")).isEqualTo(BigDecimal.ONE);
     }
 
+    @Test
+    public void Should_Have_Default_Constructor() {
+        RuntimeManager manager = new RuntimeManager();
+        Assertions.assertThat(manager).isNotNull();
+    }
+
+    @Test
+    public void Should_Allow_Access_To_Wrapped_Service() {
+        RuntimeManager manager = new RuntimeManager();
+        Assertions.assertThat(manager.getExecutionService()).isNull();
+    }
+
+    @Test
+    public void Should_Allow_To_Manipulate_Wrapped_Service() {
+        RuntimeManager manager = new RuntimeManager();
+        Assertions.assertThat(manager.getExecutionService()).isNull();
+        RuntimeService service = RuntimeServiceMockBuilder.build();
+        manager.setExecutionService(service);
+        Assertions.assertThat(manager.getExecutionService()).isEqualTo(service);
+    }
+
 }
