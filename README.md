@@ -2,6 +2,9 @@
 
 ## Badges
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.egatlovs/variable-management.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.egatlovs/variable-management)
+[![Javadoc](http://www.javadoc.io/badge/com.github.egatlovs/variable-management.svg)](http://www.javadoc.io/doc/com.github.egatlovs/variable-management)
+
 [![Build Status](https://travis-ci.org/EgatlovS/variable-management.svg?branch=master)](https://travis-ci.org/EgatlovS/variable-management)
 [![codecov.io](https://codecov.io/gh/EgatlovS/variable-management/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/EgatlovS/variable-management?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
