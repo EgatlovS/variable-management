@@ -1,10 +1,13 @@
 package com.github.egatlovs.unit.managers;
 
 import com.github.egatlovs.mock.ManagerFieldMock;
+import com.github.egatlovs.util.builder.ExecutionMockBuilder;
 import com.github.egatlovs.util.builder.RuntimeServiceMockBuilder;
+import com.github.egatlovs.variablemanager.managers.RuntimeManager;
 import com.github.egatlovs.variablemanager.managers.RuntimeManager;
 import org.assertj.core.api.Assertions;
 import org.camunda.bpm.engine.RuntimeService;
+import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -98,6 +101,26 @@ public class RuntimeManagerTest {
         Assertions.assertThat(service.getVariableLocal("executionId", "fieldPrefix_fieldName"))
                 .isEqualTo("annotatedString");
         Assertions.assertThat(service.getVariableLocal("executionId", "myDecimal")).isEqualTo(BigDecimal.ONE);
+    }
+
+    @Test
+    public void Should_Have_Default_Constructor() {
+        RuntimeManager manager = new RuntimeManager();
+        Assertions.assertThat(manager).isNotNull();
+    }
+
+    @Test
+    public void Should_Allow_Access_To_Wrapped_Service() {
+        RuntimeManager manager = new RuntimeManager();
+        Assertions.assertThat(manager.getExecutionService()).isNull();
+    }
+    @Test
+    public void Should_Allow_To_Manipulate_Wrapped_Service() {
+        RuntimeManager manager = new RuntimeManager();
+        Assertions.assertThat(manager.getExecutionService()).isNull();
+        RuntimeService service = RuntimeServiceMockBuilder.build();
+        manager.setExecutionService(service);
+        Assertions.assertThat(manager.getExecutionService()).isEqualTo(service);
     }
 
 }
