@@ -4,8 +4,8 @@ import javax.validation.ConstraintViolation;
 import java.util.Set;
 
 /**
- * <b>ConstraintViolationMessage</b></br>
- * </br>
+ * <b>ConstraintViolationMessage</b><br>
+ * <br>
  * ConstraintViolationMessage uses the BeanValidations ConstraintViolations to
  * create a String representing each validation failure of an ExecutionEntity.
  *

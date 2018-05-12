@@ -4,9 +4,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 /**
- * <b>VariableManager</b></br>
- * </br>
- * VariableManager wraps each Manager and offers access to them.</br>
+ * <b>VariableManager</b><br>
+ * <br>
+ * VariableManager wraps each Manager and offers access to them.<br>
  * The VariableManager is injectable. If you inject it in your bean it will
  * initialize itself with the Managers provided in the environment.
  * <p>

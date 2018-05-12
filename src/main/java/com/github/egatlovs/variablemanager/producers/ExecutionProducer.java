@@ -6,8 +6,8 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import javax.enterprise.inject.Produces;
 
 /**
- * <b>ExecutionProducer</b></br>
- * </br>
+ * <b>ExecutionProducer</b><br>
+ * <br>
  * This class provides the current DelegateExecution if present otherwise null
  * is returned.
  *

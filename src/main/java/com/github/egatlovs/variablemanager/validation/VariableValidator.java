@@ -8,8 +8,8 @@ import javax.validation.Validator;
 import java.util.Set;
 
 /**
- * <b>VariableValidator</b></br>
- * </br>
+ * <b>VariableValidator</b><br>
+ * <br>
  * This class wraps the BeanValidation Feature in a single Method.
  *
  * @author egatlovs
@@ -23,7 +23,7 @@ public class VariableValidator {
      * ViolationException with each validation failure in its message.
      *
      * @param value - The object to be validated
-     * @throws ViolationException
+     * @throws ViolationException which contains detailed Information on what went wrong
      */
     public static void validate(Object value) {
         Validator validator = Validation.buildDefaultValidatorFactory().getValidator();

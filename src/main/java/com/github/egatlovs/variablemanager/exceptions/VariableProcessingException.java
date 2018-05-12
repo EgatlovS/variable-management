@@ -1,8 +1,8 @@
 package com.github.egatlovs.variablemanager.exceptions;
 
 /**
- * <b>VariableProcessingException</b></br>
- * </br>
+ * <b>VariableProcessingException</b><br>
+ * <br>
  * This is a RuntimeException which will be thrown if the processing of
  * variables fail.
  *

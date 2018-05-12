@@ -5,8 +5,8 @@ import com.github.egatlovs.variablemanager.annotations.FieldName;
 import java.lang.reflect.Field;
 
 /**
- * <b>FieldNameExtractor</b></br>
- * </br>
+ * <b>FieldNameExtractor</b><br>
+ * <br>
  * FieldNameExtractor is capable of building a name of a given Field, Class or Object.
  *
  * @author egatlovs

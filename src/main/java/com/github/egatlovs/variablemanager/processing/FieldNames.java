@@ -8,16 +8,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <b>FieldNames</b></br>
- * </br>
+ * <b>FieldNames</b><br>
+ * <br>
  * FieldNames is capable of building names out of a given Class. If the Class is
  * annotated with {@code @ObjectValue} the values of the Annotation will be used
  * to determine if the name of the Object or of the Fields of the Object are
- * returned. </br>
- * </br>
- * <b>Note:</b></br>
+ * returned. <br>
+ * <br>
+ * <b>Note:</b><br>
  * <i>Fields annotated with {@code @Ignore} are ignored and no name will be
- * provided.</i></br>
+ * provided.</i><br>
  *
  * @author egatlovs
  */
@@ -27,14 +27,19 @@ public class FieldNames {
      * This method determines names out of a given Class. If the Class is annotated
      * with {@code @ObjectValue} the values of the Annotation will be used to
      * determine if the name of the Object or of the Fields of the Object are
-     * returned. </br>
-     * </br>
-     * <b>Note:</b></br>
+     * returned. <br>
+     * <br>
+     * <b>Note:</b><br>
      * <i>Fields annotated with {@code @Ignore} are ignored and no name will be
-     * provided.</i></br>
+     * provided.</i><br>
      *
      * @param clazz - The Class from which the names will be processed
+     * @param <T> - The type of the class
      * @return The processed names
+     */
+    /**
+     * @param clazz
+     * @return
      */
     public <T> Set<String> getNames(Class<T> clazz) {
         Set<String> names = new HashSet<>();

@@ -5,8 +5,8 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 public interface ExecutionVariableManager {
 
     /**
-     * Sets a Variable to the Execution. </br>
-     * </br>
+     * Sets a Variable to the Execution. <br>
+     * <br>
      * <b>Note:</b> the variable will be processed as follows:
      * <ol>
      * <li>The object will be validated using bean validation.</li>
@@ -14,18 +14,18 @@ public interface ExecutionVariableManager {
      * {@code ProcessingUnit.class}</li>
      * </ol>
      * If you want more Information of how variables are processed watch out for
-     * {@code ProcessingUnit.class}. </br>
+     * {@code ProcessingUnit.class}. <br>
      * If you want to manipulate how your variables are processed look for
-     * {@code @ObjectValue}, {@code @FileValue}, {@code @FieldName} and {@code @Ignore}. </br>
-     * </br>
+     * {@code @ObjectValue}, {@code @FileValue}, {@code @FieldName} and {@code @Ignore}. <br>
+     * <br>
      *
      * @param value - The value to be set to the Execution
      */
     void setVariable(Object value);
 
     /**
-     * Sets a Variable Locally to the Execution. </br>
-     * </br>
+     * Sets a Variable Locally to the Execution. <br>
+     * <br>
      * <b>Note:</b> the variable will be processed as follows:
      * <ol>
      * <li>The object will be validated using bean validation.</li>
@@ -33,66 +33,70 @@ public interface ExecutionVariableManager {
      * {@code ProcessingUnit.class}</li>
      * </ol>
      * If you want more Information of how variables are processed watch out for
-     * {@code ProcessingUnit.class}. </br>
+     * {@code ProcessingUnit.class}. <br>
      * If you want to manipulate how your variables are processed look for
-     * {@code @ObjectValue}, {@code @FileValue}, {@code @FieldName} and {@code @Ignore}. </br>
-     * </br>
+     * {@code @ObjectValue}, {@code @FileValue}, {@code @FieldName} and {@code @Ignore}. <br>
+     * <br>
      *
      * @param value - The value to be set to the Execution
      */
     void setVariableLocal(Object value);
 
     /**
-     * Retrieves a Variable from the Execution. </br>
-     * </br>
+     * Retrieves a Variable from the Execution. <br>
+     * <br>
      * The variables will be read from the given class using
      * {@code FieldNames.class}. After that each variable will be called out of the
-     * execution. </br>
+     * execution. <br>
      * Now that each variable is retrieved from the execution, the
      * {@code ResultObject.class} will be used to build the requested object which
-     * is then returned. </br>
+     * is then returned. <br>
      *
      * @param clazz - The Class which should be gathered
+     * @param <T>   - The type of the clazz
      * @return - The Object of the requested class
      */
     <T> T getVariable(Class<T> clazz);
 
     /**
-     * Retrieves a Variable locally from the Execution. </br>
-     * </br>
+     * Retrieves a Variable locally from the Execution. <br>
+     * <br>
      * The variables will be read from the given class using
      * {@code FieldNames.class}. After that each variable will be called out of the
-     * execution. </br>
+     * execution. <br>
      * Now that each variable is retrieved from the execution, the
      * {@code ResultObject.class} will be used to build the requested object which
-     * is then returned. </br>
+     * is then returned. <br>
      *
      * @param clazz - The Class which should be gathered
+     * @param <T>   - The type of the clazz
      * @return - The Object of the requested class
      */
     <T> T getVariableLocal(Class<T> clazz);
 
     /**
-     * Removes a Variable from the Execution. </br>
-     * </br>
+     * Removes a Variable from the Execution. <br>
+     * <br>
      * The variables will be read from the given class using
      * {@code FieldNames.class}. After that each variable will be removed from the
-     * execution. </br>
+     * execution. <br>
      *
      * @param clazz - The Class which should be used to retrieve the fieldnames to be
      *              deleted
+     * @param <T>   - The type of the clazz
      */
     <T> void removeVariables(Class<T> clazz);
 
     /**
-     * Removes Variables locally from the Execution. </br>
-     * </br>
+     * Removes Variables locally from the Execution. <br>
+     * <br>
      * The variables will be read from the given class using
      * {@code FieldNames.class}. After that each variable will be removed from the
-     * execution. </br>
+     * execution. <br>
      *
      * @param clazz - The Class which should be used to retrieve the fieldnames to be
      *              deleted
+     * @param <T>   - The type of the clazz
      */
     <T> void removeVariablesLocal(Class<T> clazz);
 
