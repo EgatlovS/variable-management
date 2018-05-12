@@ -1,13 +1,10 @@
 package com.github.egatlovs.unit.managers;
 
 import com.github.egatlovs.mock.ManagerFieldMock;
-import com.github.egatlovs.util.builder.ExecutionMockBuilder;
 import com.github.egatlovs.util.builder.RuntimeServiceMockBuilder;
-import com.github.egatlovs.variablemanager.managers.RuntimeManager;
 import com.github.egatlovs.variablemanager.managers.RuntimeManager;
 import org.assertj.core.api.Assertions;
 import org.camunda.bpm.engine.RuntimeService;
-import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.junit.Test;
 
 import java.math.BigDecimal;
