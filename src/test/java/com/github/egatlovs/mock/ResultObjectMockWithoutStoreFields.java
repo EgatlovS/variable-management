@@ -2,12 +2,11 @@ package com.github.egatlovs.mock;
 
 import com.github.egatlovs.variablemanager.annotations.FieldName;
 import com.github.egatlovs.variablemanager.annotations.Ignore;
-import com.github.egatlovs.variablemanager.annotations.ObjectValue;
 
 import java.math.BigDecimal;
 
-@ObjectValue(storeFields = true)
-public class ManagerFieldMock {
+@FieldName(name = "resultObject", prefix = "my")
+public class ResultObjectMockWithoutStoreFields {
 
     private String someString = "string";
     @FieldName(name = "fieldName", prefix = "fieldPrefix")

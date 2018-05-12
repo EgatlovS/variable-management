@@ -7,7 +7,7 @@ import com.github.egatlovs.variablemanager.annotations.ObjectValue;
 import java.math.BigDecimal;
 
 @ObjectValue(storeFields = true)
-public class ManagerFieldMock {
+public class ProcessingUnitMock {
 
     private String someString = "string";
     @FieldName(name = "fieldName", prefix = "fieldPrefix")
@@ -16,6 +16,16 @@ public class ManagerFieldMock {
     private BigDecimal decimal = BigDecimal.ONE;
     @Ignore
     private Object ignoredField;
+
+    public ProcessingUnitMock() {
+    }
+
+    public ProcessingUnitMock(String someString, String annotated, BigDecimal decimal, Object ignoredField) {
+        this.someString = someString;
+        this.annotated = annotated;
+        this.decimal = decimal;
+        this.ignoredField = ignoredField;
+    }
 
     public String getSomeString() {
         return someString;
@@ -48,5 +58,4 @@ public class ManagerFieldMock {
     public void setIgnoredField(Object ignoredField) {
         this.ignoredField = ignoredField;
     }
-
 }

@@ -2,32 +2,101 @@
 
 ## Badges
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.egatlovs/variable-management.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.egatlovs/variable-management)
+[![Javadoc](http://www.javadoc.io/badge/com.github.egatlovs/variable-management.svg)](http://www.javadoc.io/doc/com.github.egatlovs/variable-management)
+
 [![Build Status](https://travis-ci.org/EgatlovS/variable-management.svg?branch=master)](https://travis-ci.org/EgatlovS/variable-management)
 [![codecov.io](https://codecov.io/gh/EgatlovS/variable-management/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/EgatlovS/variable-management?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Foreword
 
-Variable Management is an extension of the camunda java api.
-Camunda itself provides a process engine to automate and orchestrate business processes. At work out goal is to provide processes and optimize them as needed.
-We did this for 2 years at this point in time.
-I personally recognized that executing tasks developing and modelling a process is quite easy. But writing variables and retrieving them from the so called execution can get quite messy. Thats why i code variable-management.
+Variable Management is an extension of the Camunda Java-API.
+Camunda itself provides a process engine to automate and orchestrate business processes.
+I personally recognized that executing tasks developing and modeling a process is quite easy. But writing variables and retrieving them from the so called execution can get quite messy. Thats why I code variable-management.
 
 ## Content
 
 - [Badges](#badges)
-- [The reason why](#the-reason-why)
+- [Foreword](#foreword)
 - [Introduction](#introduction)
     - [Managers](#managers)
     - [Annotations](#annotations)
-- [Examples](#examples)
-- [Future Plans](#future-plans)
+- [Getting Started](#getting-started)
+- [Example Projects](#example-projects)
+- [Documentation](#documentation)
+- [Purpose](#purpose)
+- [Code Snippets](#code-snippets)
+- [Roadmap](#roadmap)
 - [Epilogue](#epilogue)
 
+## Introduction
 
-## The reason why
+This Project provides Objects called Managers which wrap Camunda Services and give you the ability to write and read variables in a different way.
+See the Topics below to read more about Managers and their abilities.
 
-Everyone of us nows the TwitterProcess example of camunda. Inside the whole process you work with a maximum of maybe 10 variables. Most of them are some sort of Human-Written Text where you dont necessarly need to apply Constraints or some sort of validation.
+### Managers
+
+Each Manager provides the ability to read, write and remove variables globally and locally. Also every Manager allows access to the wrapped Camunda object.
+
+Following Managers are provided:
+ - **RuntimeManager**
+ 	- This Manager wraps a RuntimeService.
+ - **TaskManager**
+ 	- This Manager wraps a TaskService.
+ - **ExecutionManager**
+	- This Manager wraps the current DelegateExecution.
+
+You can use each Manager to write, read or remove an Object from an Execution.
+The Manager will at first run a Validation using the BeanValidation Spec.
+That means that you can annotate each field of your Object with the well-known [BeanValidation Annotations](https://docs.oracle.com/javaee/6/tutorial/doc/gircz.html).
+After the Validation is successful the Manager will process your Object and it takes care of the Annotations you've used
+so that you can manipulate the Result. More on Manipulations of an Execution Entity is provided on the Annotations section.
+
+
+### Annotations
+
+Each Annotation gives you the ability to manipulate the Object retrieved or written to the Execution.
+
+Following Annotations are provided:
+ - **ObjectValue**
+ 	- provides following fields:
+ 		- storeFields -> where you can decide if the whole Object is used and serialized with the values below or the Declared Fields them self are used
+ 		- serializationDataFormat -> which takes the Camunda provided serializationDataFormats  
+ 		- customSerializationDataFormat -> where you can specify you're own custom Formats
+ - **FileValue**
+ 	- provides following fields:
+ 		- name -> the filename
+ 		- encoding -> the files encoding
+ 		- mimeType -> the files mimeType
+ - **Ignore**
+ 	- tells the Manager to ignore the field
+ - **FieldName**
+ 	- name -> the name to be used (at default the variable name would be used)
+ 	- prefix -> the prefix to be used (if set this would result in a name like: *prefix_name*)
+
+## Getting Started
+
+1. Create a project using [Camundas Maven Archetype for a Process Application (EJB, WAR)](https://docs.camunda.org/manual/7.4/user-guide/process-applications/maven-archetypes/#overview-of-available-maven-archetypes).
+2. Add the [newest dependency](https://search.maven.org/#search%7Cga%7C1%7Ccom.github.egatlovs) of this project.
+3. Create a process and a Service Task with a JavaDelegate.
+4. Create an Object and declare with the provided Annotations.
+5. Inject the ExecutionManager into your Delegate.
+6. Start writing, reading and removing variables.
+
+## Example Projects
+
+ - [Variable Management Sample](https://github.com/EgatlovS/variable-management-sample) made by EgatlovS
+
+*You got an OpenSource Project using this Framework? -> Send an [Email](mailto:dev.egatlovs@gmail.com) and I will paste the Link for the community!*
+
+## Documentation
+
+For more Information on this Framework please visit the [Documentation](http://github.com/EgatlovS).
+
+## Purpose
+
+Everyone of us knows the TwitterProcess example of Camunda. Inside the whole process you work with a maximum of maybe ten variables. Most of them are some sort of Human-Written Text where you don't necessary need to apply Constraints or some sort of validation.
 
 Heres a little example of that:
 
@@ -63,9 +132,9 @@ Pretty easy:
     }
 ```
 
-Ok now we have that. Lets think about some sort of service where you get this array from. Ofcourse you can never trust anyone.. thats why you probably want to nullcheck the array.
+Okay now we have that. Lets think about some sort of service where you get this array from. Of course you can never trust anyone.. thats why you probably want to null-check the array.
 
-So youre code looks like that:
+So you're code looks like that:
 
 ```java
     public void execute(DelegateExecution execution) throws Exception {
@@ -77,49 +146,20 @@ So youre code looks like that:
     }
 ```
 
-Note that i added a line to save the array inside the execution. Thats also my next concern. You always access and write variables based of a String representing the variable. Think about a process where you want to access a single variable in various different tasks. Thats the point where most developers think about some sort of enum where you store the names of variables and retrieve them elsewhere to access the variable. Thats to ensure, that if someone renames them, everything else will still be functional.
+Note that I added a line to save the array inside the execution. Thats also my next concern. You always access and write variables based of a String representing the variable. Think about a process where you want to access a single variable in various different tasks. Thats the point where most developers think about some sort of Enumeration where you store the names of variables and retrieve them elsewhere to access the variable. Thats to ensure, that if someone renames them, everything else will still be functional.
 
 Having all of this accomplished you can model and implement a whole lot of processes.
-At some point you realize your variables arent that great when you watch them inside the camunda cockpit. So you probably want some form of metadata. Lets stick with a prefix to a variable name.
-Codewise that means you add a field to your enum. After u realize the same prefix is used multiple times you go with multiple enums based on there prefix and each Field actually corresponds to the defined prefix. Just because if you change it, functionality is still provided and code duplication is reduced.
+At some point you realize your variables aren't that great when you watch them inside the Camunda cockpit. So you probably want some form of Meta-Data. Lets stick with a prefix to a variable name.
+Codewise that means you add a field to your Enumeration. After u realize the same prefix is used multiple times you go with multiple Enumerations based on there prefix and each Field actually corresponds to the defined prefix. Just because if you change it, functionality is still provided and code duplication is reduced.
 
-And now think how about how your code would Look like if you gather 20 different variables from some sort of Service and you want each of them inside the execution, all validated differently and you do that for 10 Services in 10 different tasks.
+And now think how your code would look like if you gather twenty different variables from some sort of Service and you want each of them inside the execution, all validated differently and you do that for ten Services in ten different tasks.
 
 Yes thats a mess.
 
-It you read through until now and you actually dont think i made a huge mistake, you can see some examples on how i personally tried to make things less messy and make everything feel a little more known.
-Otherwise if you think im totally wrong dont hesitate contact me and let me learn from my mistakes.
+If you read through until now and you actually don't think i made a huge mistake, you can see some examples on how I personally tried to make things less messy and try to make everything feel a little more known.
+Otherwise if you think I'm totally wrong don't hesitate [contact me](mailto:dev.egatlovs@gmail.com) and let me learn from my mistakes.
 
-## Introduction
-
-This Project provides Objects called Managers which wrap camunda Services and give you the ability to write and read variables in a different way.
-The first release focuses a lot on JPA like behaviour with Entitys and BeanValidation.
-
-### Managers
-
-Following Managers are provided:
- - RuntimeManager
- - TaskManager
- - ExecutionManager
-
-Each of them provide the ability to read, write and remove variables globally and locally. Also every Manager allows access to the wrapped camunda object.
-
-### Annotations
-
-Following Annotations are provided:
- - Execution
- - ExecutionField
- - Ignore
-
-The Execution Annotation is used to describe how a class should be stored. 
-For this two Attributes can be overriden.
-StoreFields is one of those and will describe if the object itself or each variable declared in it will be written to the execution. The Attribute storeStrategy is used to describe how variables are written. Either json or object can be used.
-
-The ExecutionField annotation describes how a field should be called. So you can set a name attribute and if you want to you can set a prefix too.
-
-The Ignore annotation is used to Mark variables to be ignored from the manager when written in the storeFields-mode.
-
-## Examples
+## Code Snippets
 
 Instead of:
 
@@ -154,25 +194,17 @@ You can just write this:
     }
 ```
 
-## Future Plans
+## Roadmap
 
 Here are some plans for the next weeks:
- - Work on Project "Typed Value Support"
- - Release Version 2.0.0 of this framework
- 
- > **Why Release 2.0.0?**
- > As of the Typed Value Support rethinking some Annotations
- > and how they influence the Execution Entities was necessary to
- > give everyone a better experience.
- > After release 2 the next features should not break the API and the whole
- > project should be backward compatible.
+ - Work on Project "Logging with Correlation ids"
+ - Work on Managed Fields to Inject the Fields you desire directly in your JavaDelegate
 
 ## Epilogue
 
 **Problems using this framework?**
- Create an issue i will try to solve problems as soon as possible.
+- Create an issue i will try to solve problems as soon as possible.
 
-> Thanks for reading everything!
-> Please make sure to contact me for any question and dont hesitate to contribute.
+Thanks for reading everything!
 
-**Have a nice day!**
+Please make sure to contact me for any question and don't hesitate to contribute.

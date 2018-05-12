@@ -3,11 +3,12 @@ package com.github.egatlovs.mock;
 import com.github.egatlovs.variablemanager.annotations.FieldName;
 import com.github.egatlovs.variablemanager.annotations.Ignore;
 import com.github.egatlovs.variablemanager.annotations.ObjectValue;
+import org.camunda.bpm.engine.variable.Variables;
 
 import java.math.BigDecimal;
 
 @ObjectValue(storeFields = true)
-public class ManagerFieldMock {
+public class ResultObjectMockNestedObject {
 
     private String someString = "string";
     @FieldName(name = "fieldName", prefix = "fieldPrefix")
@@ -16,6 +17,20 @@ public class ManagerFieldMock {
     private BigDecimal decimal = BigDecimal.ONE;
     @Ignore
     private Object ignoredField;
+    @ObjectValue(serializationFormat = Variables.SerializationDataFormats.XML)
+    private NestedObject nestedObject;
+
+    public ResultObjectMockNestedObject() {
+        this.nestedObject = new NestedObject();
+    }
+
+    public NestedObject getNestedObject() {
+        return nestedObject;
+    }
+
+    public void setNestedObject(NestedObject nestedObject) {
+        this.nestedObject = nestedObject;
+    }
 
     public String getSomeString() {
         return someString;

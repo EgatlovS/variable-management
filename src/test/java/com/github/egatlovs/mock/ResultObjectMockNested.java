@@ -7,7 +7,7 @@ import com.github.egatlovs.variablemanager.annotations.ObjectValue;
 import java.math.BigDecimal;
 
 @ObjectValue(storeFields = true)
-public class ManagerFieldMock {
+public class ResultObjectMockNested {
 
     private String someString = "string";
     @FieldName(name = "fieldName", prefix = "fieldPrefix")
@@ -16,6 +16,20 @@ public class ManagerFieldMock {
     private BigDecimal decimal = BigDecimal.ONE;
     @Ignore
     private Object ignoredField;
+    @ObjectValue(storeFields = true)
+    private NestedObject nestedObject;
+
+    public ResultObjectMockNested() {
+        this.nestedObject = new NestedObject();
+    }
+
+    public NestedObject getNestedObject() {
+        return nestedObject;
+    }
+
+    public void setNestedObject(NestedObject nestedObject) {
+        this.nestedObject = nestedObject;
+    }
 
     public String getSomeString() {
         return someString;
