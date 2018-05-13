@@ -19,23 +19,9 @@ Create a Feature Request to help us enhance this project.
 ## Contribute code  
 Help us by implementing Features and solve Bugs. Make sure you follow these guidelines:
 
-- use [git flow]([http://danielkummer.github.io/git-flow-cheatsheet](http://danielkummer.github.io/git-flow-cheatsheet)/)  
-- create commits with following styles:  
-- subject is less than 50 characters  
-- subject is present tense  
-- subject contains brief description of whats changed  
-- subject contains prefixes:  
-   - feat -> new behaviour  
-   - refactor -> clean up bad code  
-   - fix -> solved a bug/typo  
-   - doc -> work on documentation  
-   - test -> creating tests  
-   - style -> code formatting  
-   - improve -> feature enhancements  
-- body contains information why this commit was necessary  
-- footer contains closes tag for issues to be closed  
-- footer contains breaking changes
-
+- use [git flow](http://danielkummer.github.io/git-flow-cheatsheet)
+- create [conventional commits](https://conventionalcommits.org)
+ 
 ## Example commit message
 
 ```bash  
