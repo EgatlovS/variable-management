@@ -92,7 +92,7 @@ Following Annotations are provided:
 
 ## Documentation
 
-For more Information on this Framework please visit the [Documentation](http://github.com/EgatlovS).
+For more Information on this Framework please visit the [Documentation](https://egatlovs.github.io/variable-management/).
 
 ## Purpose
 
